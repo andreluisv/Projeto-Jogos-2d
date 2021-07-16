@@ -25,7 +25,7 @@ public class GameLogic : MonoBehaviour
 
     void OnMessage(int fromDeviceID, JToken data){
         Debug.Log("message from" + fromDeviceID + "data: " + data);
-        if (data["action"] != null && data["action"].ToString().Equals("interact")){
+        if (data["action"] != null && data["action"].ToString().Equals("change-color")){
             Camera.main.backgroundColor = new Color(Random.Range(0f,1f),Random.Range(0f,1f),Random.Range(0f,1f));
         }
     }

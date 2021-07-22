@@ -6,7 +6,11 @@ public class PlayerScript : MonoBehaviour
 {
     private List<Transform> waypoints;
 
+    private List<GameObject> boardPlaces;
+
     private Transform currentTarget;
+
+    private GameLogic gameLogic;
 
     [SerializeField]
     private float moveSpeed = 5f;
@@ -27,11 +31,15 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
+        gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         waypoints = new List<Transform>();
+        boardPlaces = new List<GameObject>();
         for (int i = 0; i < waypointsSize; i++)
         {
             GameObject waypoint = GameObject.Find("BoardWaypoints" + playerIndex + "/Waypoint" + i);
+            GameObject place = GameObject.Find("BoardPlaces" + playerIndex + "/Board" + i);
             waypoints.Add(waypoint.transform);
+            boardPlaces.Add(place);
         }
         transform.position = waypoints[waypointIndex].transform.position;
         currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
@@ -70,6 +78,7 @@ public class PlayerScript : MonoBehaviour
             if (toMove == 0)
             {
                 isMoving = false;
+                gameLogic.EndMove();
             }
         }
     }

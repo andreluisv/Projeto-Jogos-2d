@@ -8,8 +8,6 @@ public class DiceScript : MonoBehaviour
 
     private SpriteRenderer rend;
 
-    private int playerTurn = 0;
-
     private bool coroutineAllowed = true;
 
     private GameLogic gameLogic;
@@ -23,8 +21,9 @@ public class DiceScript : MonoBehaviour
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
+        Debug.Log("Corroutine " + coroutineAllowed);
         if (coroutineAllowed)
         {
             StartCoroutine("RollDice");
@@ -41,8 +40,12 @@ public class DiceScript : MonoBehaviour
             rend.sprite = diceSides[randomDiceSide];
             yield return new WaitForSeconds(0.05f);
         }
-        // fazer mais alguma coisa
-        coroutineAllowed = true;
+        
         gameLogic.MovePlayer(randomDiceSide + 1);
+    }
+
+    public void SetCoroutine(bool newCoroutine)
+    {
+        coroutineAllowed = newCoroutine;
     }
 }

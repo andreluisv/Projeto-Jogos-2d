@@ -9,6 +9,7 @@ public class LoadScript : MonoBehaviour
     {
         GameLogic gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         if (gameLogic == null) return;
+        gameLogic.dice = GameObject.Find("Dice").GetComponent<DiceScript>();
         for (int i = 0; i < gameLogic.playersID.Count; i++)
         {
             GameObject newPlayer = new GameObject("Player" + i);

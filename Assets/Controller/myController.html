@@ -96,9 +96,8 @@
     function App() {
         //var me = this;
         this.airconsole = new AirConsole({ "orientation": "landscape" });
-        console.log("meme");
         ViewManager.init();
-        ViewManager.show("noAction");
+        ViewManager.show("initGame");
 
         //me.airconsole.onMessage = function (from, data) {
         //    console.log("onMessage", from, data);
@@ -107,7 +106,7 @@
         //me.airconsole.onReady = function (code) {
         //    console.log("onReady", code);
         //};
-
+        /*
         this.airconsole.onCustomDeviceStateChange = function (device_id, device_data) {
             //to see logs from the controller, start your game in the "virtual controllers" browser start mode from Unity and open your browser's developer console. 
             //console.log("onCustomDeviceStateChange", device_id, device_data);
@@ -129,7 +128,16 @@
                 //    }
                 //}
             }
-        };
+        }; */
+
+        this.airconsole.onMessage = function (device_id, device_data) {
+            if (device_id == AirConsole.SCREEN) {
+                if (device_data["view"] != null && device_data["view"] != "") {
+                    //set a new view accordingly
+                    ViewManager.show(device_data["view"]);
+                }
+            }
+        }
 
     /* JavaScript / Functionality. Add functions and evens here */ 
 
@@ -160,15 +168,9 @@
     }
 
     App.prototype.pressMainMenuButton = function (msg) {
-        //console.log(msg + " button pressed");
-        this.airconsole.message(AirConsole.SCREEN, { "action": msg });
-    };
-    App.prototype.pressOptionsBackButton = function (msg) {
-        //console.log(msg + " button pressed");
         this.airconsole.message(AirConsole.SCREEN, { "action": msg });
     };
     App.prototype.pressRollDiceButton = function (msg) {
-        //console.log(msg + " button pressed");
         this.airconsole.message(AirConsole.SCREEN, { "action": msg });
     };
 
@@ -176,19 +178,23 @@
 </head>
 <body onload="window.app = new App()">
     <div id="background"></div>
-    <div class="view" id="noAction">
-        <div style="color:white;">Waiting</div>
+    <div class="view" id="initGame">
+        <div style="color:white;">Loading</div>
     </div>
     <div class="view" id="menuNavigation">
-        <div class="button" id="startButton" ontouchstart="window.app.pressMainMenuButton('mainMenuStart')"></div>
-        <div class="button" id="optionsButton" ontouchstart="window.app.pressMainMenuButton('mainMenuOptions')"></div>
-        <div class="button" id="exitButton" ontouchstart="window.app.pressMainMenuButton('mainMenuExit')"></div>
+        <div class="button" id="startButton" ontouchstart="window.app.pressMainMenuButton('playerReady')"></div>
     </div>
-    <div class="view" id="optionsNavigation">
-        <div class="button" id="backButton" ontouchstart="window.app.pressOptionsBackButton('optionsMenuBack')"></div>
+    <div class="view" id="waitingGame">
+        <div style="color:white;">Waiting other players</div>
     </div>
-    <div class="view" id="mainGame">
+    <div class="view" id="diceDisplay">
         <div class="button" id="rollButton" ontouchstart="window.app.pressRollDiceButton('rollDice')"></div>
+    </div>
+    <div class="view" id="playerMoving">
+        <div style="color:white;">Character is moving across the board</div>
+    </div>
+    <div class="view" id="notYourTurn">
+        <div style="color:white;">Wait your turn</div>
     </div>
     <!-- Add your HTML elements here -->
     <!-- <div id="collor-button" ontouchstart="window.app.sendMessageToScreen('interact')"></div> -->

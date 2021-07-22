@@ -8,25 +8,24 @@ using Newtonsoft.Json.Linq;
 public class GameLogic : MonoBehaviour
 {
     public GameObject MainMenuObj, OptionsMenuObj;
-    private Text Dice1, Dice2;
-    private int player1, player2;
+
+    public List<int> playersID;
+    
+    public List<GameObject> players;
+
+    private int playerToMove = 0;
+    
     private void Start()
     {
+        playersID = new List<int>();
+        players = new List<GameObject>();
         DontDestroyOnLoad(gameObject);
     }
     void Awake()
     {
-        //menuRef.GetComponent
-        //register all the events I need 
         AirConsole.instance.onReady += OnReady;
         AirConsole.instance.onMessage += OnMessage;
-
-        //no device state can be set until AirConsole is ready, so I disable the buttons until then
-        //gameStateButtons = FindObjectsOfType<Button>();
-        //for (int i = 0; i < gameStateButtons.Length; ++i)
-        //{
-        //    gameStateButtons[i].interactable = false;
-        //}
+        AirConsole.instance.onConnect += OnConnect;
     }
     void OnReady(string code)
     {
@@ -53,7 +52,6 @@ public class GameLogic : MonoBehaviour
             SetView("mainGame");
             //Dice1 = GameObject.Find("Canvas/Dice1").GetComponent<Text>();
             //Dice2 = GameObject.Find("Canvas/Dice2").GetComponent<Text>();
-            player1 = fromDeviceID;
         } 
         else if (data["action"].ToString().Equals("mainMenuOptions"))
         {
@@ -75,21 +73,21 @@ public class GameLogic : MonoBehaviour
         }
         else if (data["action"].ToString().Equals("rollDice"))
         {
-            if (Dice1 == null)
-            {
-                Dice1 = GameObject.Find("Canvas/Dice1").GetComponent<Text>();
-                Dice2 = GameObject.Find("Canvas/Dice2").GetComponent<Text>();
-            }
-            if (fromDeviceID == player1)
-            {
-                Dice1.text = Random.Range(1,7).ToString();
-            }
-            else
-            {
-                Dice2.text = Random.Range(1, 7).ToString();
-            }
+            
+            
         }
     }
+
+    public void MovePlayer(int positions)
+    {
+        players[0].GetComponent<PlayerScript>().DiceRoll(positions);
+    }
+
+    private void OnConnect(int device_id)
+    {
+        playersID.Add(device_id);
+    }
+
     public void SetView(string viewName)
     {
         AirConsole.instance.SetCustomDeviceStateProperty("view", viewName);
@@ -100,6 +98,7 @@ public class GameLogic : MonoBehaviour
         {
             AirConsole.instance.onReady -= OnReady;
             AirConsole.instance.onMessage -= OnMessage;
+            AirConsole.instance.onConnect -= OnConnect;
         }
     }
 }

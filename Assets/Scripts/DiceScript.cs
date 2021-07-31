@@ -23,7 +23,6 @@ public class DiceScript : MonoBehaviour
 
     public void OnMouseDown()
     {
-        Debug.Log("Corroutine " + coroutineAllowed);
         if (coroutineAllowed)
         {
             StartCoroutine("RollDice");

@@ -82,6 +82,7 @@ public class GameLogic : MonoBehaviour
         } 
         else if (data["action"].ToString().Equals("rollDice"))
         {
+            // SceneManager.UAnloadSceneAsync("MiniGame0");
             var newView = new { view = "playerMoving" };
             AirConsole.instance.Message(fromDeviceID,newView);
             dice.OnMouseDown();

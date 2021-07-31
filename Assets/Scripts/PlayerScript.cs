@@ -29,15 +29,17 @@ public class PlayerScript : MonoBehaviour
 
     public bool isMoving = false;
 
+    private static readonly Color[] playerColors = {new Color(255,0,0,255), new Color(0,255,0,255), new Color(0,0,255,255)};
     private void Start()
     {
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         waypoints = new List<Transform>();
         boardPlaces = new List<GameObject>();
+        this.tag = "Player" + playerIndex;
         for (int i = 0; i < waypointsSize; i++)
         {
             GameObject waypoint = GameObject.Find("BoardWaypoints" + playerIndex + "/Waypoint" + i);
-            GameObject place = GameObject.Find("BoardPlaces" + playerIndex + "/Board" + i);
+            GameObject place = GameObject.Find("BoardPlaces/Board" + i);
             waypoints.Add(waypoint.transform);
             boardPlaces.Add(place);
         }
@@ -73,13 +75,40 @@ public class PlayerScript : MonoBehaviour
         if (transform.position == currentTarget.position)
         {
             waypointIndex += 1;
+            waypointIndex %= waypointsSize;
             currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
             toMove -= 1;
             if (toMove == 0)
             {
+                BoardPositionLogic();
                 isMoving = false;
                 gameLogic.EndMove();
             }
         }
+    }
+
+    void BoardPositionLogic() 
+    {
+        if (boardPlaces[waypointIndex].tag != this.tag) 
+        {
+            if (boardPlaces[waypointIndex].tag == "Neutral") 
+            {
+                ChangeBoardPositionLeader(boardPlaces[waypointIndex]);   
+            } 
+            else 
+            {
+                int winner = Random.Range(0,2);
+                if (winner == playerIndex)
+                {
+                    ChangeBoardPositionLeader(boardPlaces[waypointIndex]);
+                }
+            }
+        }
+    }
+
+    void ChangeBoardPositionLeader(GameObject boardPosition)
+    {
+        boardPosition.GetComponent<SpriteRenderer>().color = playerColors[playerIndex];
+        boardPosition.tag = this.tag;
     }
 }

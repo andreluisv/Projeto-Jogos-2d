@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadScript : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class LoadScript : MonoBehaviour
             newPlayer.GetComponent<PlayerScript>().SetPlayerIndex(i);
             gameLogic.players.Add(newPlayer);
         }
-
+        // SceneManager.LoadScene("MiniGame0", LoadSceneMode.Additive);
+        //SceneManager.UnloadSceneAsync("MiniGame0");
     }
 }

@@ -1,11 +1,15 @@
 
 <html>
 <head>
+  <link rel="stylesheet" type=text/css href="mystyle.css">
   <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <script type="text/javascript" src="https://www.airconsole.com/api/airconsole-1.7.0.js"></script>
   <script type="text/javascript">
     //the view manager finds all div containers with the "view" class and lets me show one view while hiding all others
     //see also: https://github.com/AirConsole/airconsole-view-manager
+
+    const controllerHasFlex = ["waitingGame", "initGame", "menuNavigation"]
+
     var ViewManager = {
     views: {},
     current_view_id: null,
@@ -23,7 +27,29 @@
         if (view) {
             this.current_view_id = id;
             this.hideAll();
-            view.style.display = "block";
+            
+            if (controllerHasFlex.indexOf(id) !== -1) view.style.display = "flex";
+            else view.style.display = "block";
+
+            if (id == "waitingGame" || id == "initGame") {
+                    document.querySelectorAll(`#${id} .typewriter`).forEach(elem => {
+                    let index = 0;
+                    let flag = false;
+                    const { text } = elem.dataset;
+
+                    const animate = () => {
+                        if (index >= text.length) {
+                            flag = true;
+                            index -= 4;
+                            elem.innerHTML = elem.innerHTML.substr(0,elem.innerHTML.length-4);
+                        }
+                        elem.innerHTML += text[index++];
+                        flag ? setTimeout(animate, 350) : setTimeout(animate,150);
+                    };
+
+                    animate();
+                });
+            }
         } else {
             console.warn("Could not find view with ID:", id);
         }
@@ -106,7 +132,49 @@
           width: 50%;
           height: 50%;
       }
-  </style>
+
+      #initGame, #waitingGame, #menuNavigation {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .typewriter {
+            color: white;
+            font-size: 50px;
+      }
+
+      /* animação pulsação botão */
+      .pulse-button {
+            color: white;
+            font-size: 35px;
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border: none;
+            box-shadow: 0 0 0 0 rgba(232, 76, 61, 0.7);
+            border-radius: 80%;
+            background-color: #e84c3d;
+            cursor: pointer;
+            -webkit-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+            -moz-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+            -ms-animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+            animation: pulse 1.25s infinite cubic-bezier(0.66, 0, 0, 1);
+      }
+        .pulse-button:hover {
+            -webkit-animation: none;-moz-animation: none;-ms-animation: none;animation: none;
+        }
+
+        @-webkit-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+        @-moz-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+        @-ms-keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+        @keyframes pulse {to {box-shadow: 0 0 0 45px rgba(232, 76, 61, 0);}}
+
+        /* -----x----- */
+
+</style>
   
   <script type="text/javascript">
 
@@ -118,37 +186,6 @@
         ViewManager.init();
         ViewManager.show("initGame");
 
-        //me.airconsole.onMessage = function (from, data) {
-        //    console.log("onMessage", from, data);
-        //};
-
-        //me.airconsole.onReady = function (code) {
-        //    console.log("onReady", code);
-        //};
-        /*
-        this.airconsole.onCustomDeviceStateChange = function (device_id, device_data) {
-            //to see logs from the controller, start your game in the "virtual controllers" browser start mode from Unity and open your browser's developer console. 
-            //console.log("onCustomDeviceStateChange", device_id, device_data);
-
-            //check if the device that sent the custom device state change is the Screen (i.e. the Unity Game, in this case), and not one of the other controllers
-            if (device_id == AirConsole.SCREEN) {
-                //check if the CustomDeviceStateChange data contains any view data
-                if (device_data["view"] != null && device_data["view"] != "") {
-                    //set a new view accordingly
-                    ViewManager.show(device_data["view"]);
-                }
-
-                //check if there's any player color data
-                //if (device_data["playerColors"] != null) {
-                    //check the CustomDeviceStateChange data contains any playerColorData for this particular device
-                //    if (device_data["playerColors"][me.airconsole.getDeviceId()]) {
-                        //this works for named colors. If you want to use colors that don't have a name, you could pass a hex code instead of a string/name
-                //        document.getElementById("background").style.backgroundColor = device_data["playerColors"][me.airconsole.getDeviceId()];
-                //    }
-                //}
-            }
-        }; */
-
         this.airconsole.onMessage = function (device_id, device_data) {
             if (device_id == AirConsole.SCREEN) {
                 if (device_data["view"] != null && device_data["view"] != "") {
@@ -157,6 +194,7 @@
                 }
             }
         }
+
 
     /* JavaScript / Functionality. Add functions and evens here */ 
 
@@ -196,18 +234,32 @@
         this.airconsole.message(AirConsole.SCREEN, { "action": "JoKenPoMove", "JoKenPoMove" : msg })
     };
 
+
+    document.querySelectorAll('.typewriter').forEach(elem => {
+    let index = 0;
+    const { text } = elem.dataset;
+
+    const animate = () => {
+        if (index >= text.length) return;
+        elem.innerHTML += text[index++];
+        setTimeout(animate, 100);
+    };
+
+        animate();
+    });
+
   </script>
 </head>
 <body onload="window.app = new App()">
     <div id="background"></div>
     <div class="view" id="initGame">
-        <div style="color:white;">Loading</div>
+        <h1 id="name" class="typewriter" data-text="Loading..."></h1>
     </div>
     <div class="view" id="menuNavigation">
-        <div class="button" id="startButton" ontouchstart="window.app.pressMainMenuButton('playerReady')"></div>
+        <button class="pulse-button" ontouchstart="window.app.pressMainMenuButton('playerReady')">Start Game</button>
     </div>
     <div class="view" id="waitingGame">
-        <div style="color:white;">Waiting other players</div>
+        <h1 id="name" class="typewriter" data-text="Waiting other players..."></h1>
     </div>
     <div class="view" id="diceDisplay">
         <div class="button" id="rollButton" ontouchstart="window.app.pressRollDiceButton('rollDice')"></div>

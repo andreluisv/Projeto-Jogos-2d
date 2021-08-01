@@ -67,6 +67,25 @@
           height: 100%;
       }
 
+      #rockButton {
+          left: 0;
+          width: 25%;
+          height: 100%;
+      }
+
+      #papperButton {
+          left: 25%;
+          width: 25%;
+          height: 100%;
+      }
+
+      #scissorsButton {
+          right: 0;
+          top: 0;
+          width: 50%;
+          height: 50%;
+      }
+
       #exitButton {
           right: 0;
           bottom: 0;
@@ -173,6 +192,9 @@
     App.prototype.pressRollDiceButton = function (msg) {
         this.airconsole.message(AirConsole.SCREEN, { "action": msg });
     };
+    App.prototype.pressJoKenPoOptions = function (msg) {
+        this.airconsole.message(AirConsole.SCREEN, { "action": "JoKenPoMove", "JoKenPoMove" : msg })
+    };
 
   </script>
 </head>
@@ -195,6 +217,20 @@
     </div>
     <div class="view" id="notYourTurn">
         <div style="color:white;">Wait your turn</div>
+    </div>
+    <div class="view" id="gameRules">
+        <div style="color:white;">Rules on Screen</div>
+    </div>
+    <div class="view" id="joKenPoOptions">
+        <div class="button" id="rockButton" ontouchstart="window.app.pressJoKenPoOptions('Rock')"></div>
+        <div class="button" id="papperButton" ontouchstart="window.app.pressJoKenPoOptions('Papper')"></div>
+        <div class="button" id="scissorsButton" ontouchstart="window.app.pressJoKenPoOptions('Scissors')"></div>
+    </div>
+    <div class="view" id="waitForCombat">
+        <div style="color:white;"> Wait for other player to choose </div>
+    </div>
+    <div class="view" id="doingCombat">
+        <div style="color:white;"> Unveiling choices </div>
     </div>
     <!-- Add your HTML elements here -->
     <!-- <div id="collor-button" ontouchstart="window.app.sendMessageToScreen('interact')"></div> -->

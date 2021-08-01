@@ -80,9 +80,8 @@ public class PlayerScript : MonoBehaviour
             toMove -= 1;
             if (toMove == 0)
             {
-                BoardPositionLogic();
                 isMoving = false;
-                gameLogic.EndMove();
+                BoardPositionLogic();
             }
         }
     }
@@ -93,22 +92,23 @@ public class PlayerScript : MonoBehaviour
         {
             if (boardPlaces[waypointIndex].tag == "Neutral") 
             {
-                ChangeBoardPositionLeader(boardPlaces[waypointIndex]);   
+                ChangeBoardPositionLeader();
+                gameLogic.EndMove();   
             } 
             else 
             {
-                int winner = Random.Range(0,2);
-                if (winner == playerIndex)
-                {
-                    ChangeBoardPositionLeader(boardPlaces[waypointIndex]);
-                }
+                gameLogic.Duel(this.tag[this.tag.Length-1]-'0', boardPlaces[waypointIndex].tag[boardPlaces[waypointIndex].tag.Length-1]-'0');
             }
+        } 
+        else 
+        {
+            gameLogic.EndMove();
         }
     }
 
-    void ChangeBoardPositionLeader(GameObject boardPosition)
+    public void ChangeBoardPositionLeader()
     {
-        boardPosition.GetComponent<SpriteRenderer>().color = playerColors[playerIndex];
-        boardPosition.tag = this.tag;
+        boardPlaces[waypointIndex].GetComponent<SpriteRenderer>().color = playerColors[playerIndex];
+        boardPlaces[waypointIndex].tag = this.tag;
     }
 }

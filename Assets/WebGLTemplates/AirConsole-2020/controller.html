@@ -28,9 +28,7 @@
             this.current_view_id = id;
             this.hideAll();
             
-            console.log("vida loouucaaaaa")
-            if (controllerHasFlex.indexOf(id) !== -1) view.style.display = "flex";
-            else view.style.display = "block";
+            view.style.display = "flex";
 
             if (id == "waitingGame" || id == "initGame") {
                     document.querySelectorAll(`#${id} .typewriter`).forEach(elem => {
@@ -50,6 +48,17 @@
 
                     animate();
                 });
+            }
+            if(id=="playerMoving"){
+                const img = document.getElementById("imgpeao")
+                let index = 0;
+                const links = ["https://i.imgur.com/hYCmynz.jpeg","https://i.imgur.com/Gl0LvFm.jpg","https://i.imgur.com/wRxKMzL.jpg"]
+                const animate = () => {
+                    if(index>=links.length)index=0;
+                    img.src=links[index++]
+                    setTimeout(animate, 1000);
+                };
+                animate();
             }
         } else {
             console.warn("Could not find view with ID:", id);
@@ -133,7 +142,69 @@
           width: 50%;
           height: 50%;
       }
+      #playerMoving{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        background: rgb(136,136,136);
+        background: linear-gradient(90deg, rgba(136,136,136,1) 0%, rgba(138,0,255,1) 50%, rgba(183,99,255,1) 100%);height: 100%;
+        width: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
 
+      #notYourTurn{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        background: rgb(98,255,253);
+        background: linear-gradient(101deg, rgba(98,255,253,1) 0%, rgba(253,2,2,1) 50%, rgba(253,2,118,1) 100%);
+        width: 100%;
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      #diceDisplay{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      #rollButton {
+        width: 40%;
+        height: 50%;
+        position: relative;
+      }
+      .button-300-300 {
+        background-image: url('https://github.com/AirConsole/airconsole-controls/blob/master/button/button-300-300.png?raw=true');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+      }
+      .button-text {
+        width: 100%;
+        top: 50%;
+        margin-top: -0.5em;
+        position: relative;
+        text-align: center;
+        color: white;
+     }
+
+    .button-300-300.button-active {
+        background-image: url('https://raw.githubusercontent.com/AirConsole/airconsole-controls/master/button/button-300-300-active.png');
+    }
+
+    .button-300-300.button-active .button-text {
+        color: black;
+    }
       #initGame, #waitingGame, #menuNavigation {
           width: 100%;
           height: 100%;
@@ -263,10 +334,17 @@
         <h1 id="name" class="typewriter" data-text="Waiting other players..."></h1>
     </div>
     <div class="view" id="diceDisplay">
-        <div class="button" id="rollButton" ontouchstart="window.app.pressRollDiceButton('rollDice')"></div>
+        <div class=button-300-300 id="rollButton" ontouchstart="window.app.pressRollDiceButton('rollDice')">
+            <div class=button-text>Jogar Dado</div>
+        </div>
     </div>
     <div class="view" id="playerMoving">
-        <div style="color:white;">Character is moving across the board</div>
+        <div style="color:white;">
+            <p>Character is moving across the board!</p>
+            <div style="height: 15%; width: 15%;">
+                <img id="imgpeao" src="https://i.imgur.com/UvpQgAY.png" style="text-align: center;"/>
+            </div>
+        </div>
     </div>
     <div class="view" id="notYourTurn">
         <div style="color:white;">Wait your turn</div>

@@ -24,10 +24,12 @@ public class PlayerScript : MonoBehaviour
     private int laps = 0;
 
     private int toMove = 0;
+    private int toMoveBack = 0;
 
     private int playerIndex;
 
     public bool isMoving = false;
+    public bool isMovingBack = false;
 
     private static readonly Color[] playerColors = {new Color(255,0,0,255), new Color(0,255,0,255), new Color(0,0,255,255)};
     private void Start()
@@ -61,12 +63,17 @@ public class PlayerScript : MonoBehaviour
         {
             Move();
         }
+        if (isMovingBack) {
+            MoveBack();
+        }
     }
 
     public void DiceRoll(int toMove)
     {
         this.toMove = toMove;
+        this.toMoveBack = toMove;
         isMoving = true;
+    
     }
 
     void Move()
@@ -84,6 +91,31 @@ public class PlayerScript : MonoBehaviour
                 BoardPositionLogic();
             }
         }
+    }
+
+    public void setMoveBack()
+    {
+        isMovingBack = true;
+    }
+    void MoveBack()
+    {
+        Transform backTarget = waypoints[(waypointIndex - 1 + waypointsSize) % waypointsSize];
+        currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
+        transform.position = Vector2.MoveTowards(transform.position, backTarget.position, moveSpeed * Time.deltaTime);
+        if (transform.position == backTarget.position)
+        {
+            waypointIndex = waypointIndex - 1 + waypointsSize;
+            waypointIndex %= waypointsSize;
+            backTarget = waypoints[(waypointIndex - 1 + waypointsSize) % waypointsSize];
+            currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
+            toMoveBack -= 1;
+            
+            if (toMoveBack == 0)
+            {
+                isMovingBack = false;
+            }
+        }
+        
     }
 
     void BoardPositionLogic() 

@@ -104,6 +104,7 @@ public class GameLogic : MonoBehaviour
         yield return new WaitForSeconds(2f);
         miniGames[0].SetActive(false);
     }
+
     public void MovePlayer(int positions)
     {
         players[playerToMove].GetComponent<PlayerScript>().DiceRoll(positions);
@@ -182,6 +183,16 @@ public class GameLogic : MonoBehaviour
                 if (playersID[i] == curChallenger)
                 {
                     players[i].GetComponent<PlayerScript>().ChangeBoardPositionLeader();
+                    break;
+                }    
+            }
+        }
+        else if (whoWins == 1) {
+            for (int i = 0; i < playersID.Count; i++)
+            {
+                if (playersID[i] == curChallenger)
+                {
+                    players[i].GetComponent<PlayerScript>().setMoveBack();
                     break;
                 }    
             }

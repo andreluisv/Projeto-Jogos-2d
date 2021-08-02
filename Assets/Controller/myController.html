@@ -22,7 +22,8 @@
         return this;
     },
 
-    show: function (id) {
+    show: function (device_data) {
+        var id = device_data["view"];
         var view = this.views[id];
         if (view) {
             this.current_view_id = id;
@@ -30,7 +31,7 @@
             
             view.style.display = "flex";
 
-            if (id == "waitingGame" || id == "initGame") {
+            if (id == "waitingGame" || id == "initGame" || id == "waitForCombat") {
                     document.querySelectorAll(`#${id} .typewriter`).forEach(elem => {
                     let index = 0;
                     let flag = false;
@@ -43,13 +44,12 @@
                             elem.innerHTML = elem.innerHTML.substr(0,elem.innerHTML.length-4);
                         }
                         elem.innerHTML += text[index++];
-                        flag ? setTimeout(animate, 350) : setTimeout(animate,150);
+                        flag ? setTimeout(animate, 550) : setTimeout(animate,150);
                     };
 
                     animate();
                 });
-            }
-            if(id=="playerMoving"){
+            } else if(id=="playerMoving"){
                 const img = document.getElementById("imgpeao")
                 let index = 0;
                 const links = ["https://i.imgur.com/hYCmynz.jpeg","https://i.imgur.com/Gl0LvFm.jpg","https://i.imgur.com/wRxKMzL.jpg"]
@@ -59,6 +59,9 @@
                     setTimeout(animate, 1000);
                 };
                 animate();
+            } else if (id == "joKenPoOptions") {
+                const titlePlayer = document.getElementById("jokenpoTitlePlayer");
+                titlePlayer.innerHTML = device_data["isChallenger"] ? "Challenger" : "Defender";
             }
         } else {
             console.warn("Could not find view with ID:", id);
@@ -84,7 +87,8 @@
 
       .button {
           background: #3B3B3B;
-          font-size: 14px;
+          color: white;
+          font-size: 35px;
           padding: 5px 10px 5px 10px;
           border: solid #1f1f1f 2px;
           height: 100%;
@@ -104,22 +108,30 @@
       }
 
       #rockButton {
-          left: 0;
-          width: 25%;
-          height: 100%;
+        background: url("https://lh3.googleusercontent.com/proxy/uLAbnhwbj2UB2J5xuaiK7h1ubcolu-1xh11NaGin0DAPRFE2pP-ZUS8lkU-VsEtAKTrbCpHGwYx08fvEWUJAEgWZyVtrEH_qbDY6rQnrz0w") no-repeat;
+        background-size: contain; 
+        left: 7%;
+         width: 25%;
+         height: 35%;
+         border: 3px solid #77c9c9;
       }
 
       #papperButton {
-          left: 25%;
-          width: 25%;
-          height: 100%;
+        background: url("https://lh3.googleusercontent.com/proxy/gXkxiRAWluo-_osk27IOkz1BJn07vuWI5HxEek52kThLC4G8nUOW33Bn8pcLU5_YVocl8_0vnN0U23aYlSfAlPc2yUbckWrMvEUyxULhObk") no-repeat;
+        background-size: contain; 
+        left: 37.5%;
+        width: 25%;
+        height: 35%;
+        border: 3px solid #f19f9f;
       }
 
       #scissorsButton {
-          right: 0;
-          top: 0;
-          width: 50%;
-          height: 50%;
+        background: url("https://lh3.googleusercontent.com/proxy/08gOVOVXz9WIIpV0qo4MVyUllYgmH9Ge3J1kwnseS2oB1m2dT9QbEs190QzUNb9U-0g_IbjiL2XGx7fJjXpFKOJJ3lX4tm6K4OLulS2f5kjYaQ") no-repeat;
+        background-size: contain; 
+        left: 68%;
+        width: 25%;
+        height: 35%;
+        border: 3px solid #6dad21;
       }
 
       #exitButton {
@@ -205,7 +217,7 @@
     .button-300-300.button-active .button-text {
         color: black;
     }
-      #initGame, #waitingGame, #menuNavigation {
+      #initGame, #waitingGame, #menuNavigation, #waitForCombat, #doingCombat, #gameRules{
           width: 100%;
           height: 100%;
           display: flex;
@@ -213,9 +225,41 @@
           align-items: center;
       }
 
+      #joKenPoOptions  {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .playerOptions {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .titleOption {
+        position: relative;
+        bottom: 45%;
+      }
+
       .typewriter {
             color: white;
             font-size: 50px;
+            text-align: center;
+      }
+
+      #jokenpoTitlePlayer {
+          color: white;
+          font-size: 35px;
+          margin-left: 25%;
+          -webkit-text-fill-color: white;
+        -webkit-text-stroke-width: 0.2px;
+        -webkit-text-stroke-color: #71b9ce;
       }
 
       /* animação pulsação botão */
@@ -262,7 +306,7 @@
             if (device_id == AirConsole.SCREEN) {
                 if (device_data["view"] != null && device_data["view"] != "") {
                     //set a new view accordingly
-                    ViewManager.show(device_data["view"]);
+                    ViewManager.show(device_data);
                 }
             }
         }
@@ -306,20 +350,6 @@
         this.airconsole.message(AirConsole.SCREEN, { "action": "JoKenPoMove", "JoKenPoMove" : msg })
     };
 
-
-    document.querySelectorAll('.typewriter').forEach(elem => {
-    let index = 0;
-    const { text } = elem.dataset;
-
-    const animate = () => {
-        if (index >= text.length) return;
-        elem.innerHTML += text[index++];
-        setTimeout(animate, 100);
-    };
-
-        animate();
-    });
-
   </script>
 </head>
 <body onload="window.app = new App()">
@@ -350,18 +380,27 @@
         <div style="color:white;">Wait your turn</div>
     </div>
     <div class="view" id="gameRules">
-        <div style="color:white;">Rules on Screen</div>
+        <div style="color:white;font-size: 50px;">Rules on Screen</div>
     </div>
     <div class="view" id="joKenPoOptions">
-        <div class="button" id="rockButton" ontouchstart="window.app.pressJoKenPoOptions('Rock')"></div>
-        <div class="button" id="papperButton" ontouchstart="window.app.pressJoKenPoOptions('Papper')"></div>
-        <div class="button" id="scissorsButton" ontouchstart="window.app.pressJoKenPoOptions('Scissors')"></div>
+        <div class="titleContainer"><h3 id ="jokenpoTitlePlayer">Placeholder</h3></div>
+        <div class="playerOptions">
+            <div class="button" id="rockButton" ontouchstart="window.app.pressJoKenPoOptions('Rock')">
+                <div class ="titleOption">Rock</div>
+            </div>
+            <div class="button" id="papperButton" ontouchstart="window.app.pressJoKenPoOptions('Papper')">
+                <div class ="titleOption">Paper</div>
+            </div>
+            <div class="button" id="scissorsButton" ontouchstart="window.app.pressJoKenPoOptions('Scissors')">
+                <div class ="titleOption">Scissor</div>
+            </div>
+        </div>
     </div>
     <div class="view" id="waitForCombat">
-        <div style="color:white;"> Wait for other player to choose </div>
+        <h1 id="name" class="typewriter" data-text="Wait for other player to choose..."></h1>
     </div>
     <div class="view" id="doingCombat">
-        <div style="color:white;"> Unveiling choices </div>
+        <div style="color:white;font-size: 50px;"> Unveiling choices </div>
     </div>
     <!-- Add your HTML elements here -->
     <!-- <div id="collor-button" ontouchstart="window.app.sendMessageToScreen('interact')"></div> -->

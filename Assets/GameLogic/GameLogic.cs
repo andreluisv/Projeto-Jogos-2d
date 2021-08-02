@@ -161,13 +161,14 @@ public class GameLogic : MonoBehaviour
         joKenPo = GameObject.Find("JoKenPoScript").GetComponent<JoKenPoScript>();
         joKenPo.SetUIActive();
         joKenPo.SetPlayers(curChallenger, curDefender);
-        SetDeviceView(curChallenger, "joKenPoOptions");
-        SetDeviceView(curDefender, "joKenPoOptions");
+        SetDeviceView(curChallenger, "joKenPoOptions", true);
+        SetDeviceView(curDefender, "joKenPoOptions", false);
     }
 
-    public void SetDeviceView(int deviceID, string viewName)
+    public void SetDeviceView(int deviceID, string viewName, bool isChallengerDevice = false)
     {
-        var newView = new { view = viewName };
+        var newView = new { view = viewName, isChallenger = isChallengerDevice };
+
         AirConsole.instance.Message(deviceID, newView);
     }
 

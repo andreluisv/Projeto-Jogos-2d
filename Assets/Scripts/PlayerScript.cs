@@ -48,7 +48,7 @@ public class PlayerScript : MonoBehaviour
         transform.position = waypoints[waypointIndex].transform.position;
         currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
 
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("SquareMeme");
+        //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/SquareMeme");
     }
 
     public void SetPlayerIndex(int playerIndex)

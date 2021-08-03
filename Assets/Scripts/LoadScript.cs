@@ -9,9 +9,7 @@ public class LoadScript : MonoBehaviour
     // Start is called before the first frame update
     public GameObject joKenPoUI;
     private Sprite[] sprites;
-    private Sprite sprite;
-    private string spriteNames = "Assets/Resources";
-    private SpriteRenderer spriteR;
+    private string spritePath = "Sprites";
     void Start()
     {
         GameLogic gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
@@ -21,8 +19,11 @@ public class LoadScript : MonoBehaviour
         gameLogic.miniGames.Add(joKenPoUI);
 
 
-        spriteR = gameObject.GetComponent<SpriteRenderer>();
-        sprite = Resources.Load<Sprite>("Assets/Resources/Capsule");
+        sprites = Resources.LoadAll<Sprite>(spritePath);
+
+        foreach(var e in sprites) {
+            Debug.Log(e.name);
+        }
 
         GameObject delicia = new GameObject("Delicia");
         delicia.AddComponent<SpriteRenderer>();
@@ -32,11 +33,10 @@ public class LoadScript : MonoBehaviour
         {
             GameObject newPlayer = new GameObject("Player" + i);
             
-
             //SpriteRenderer spriteR = new SpriteRenderer();
             //spriteR.sprite = Resources.Load<Sprite>("Assets/Resources/Capsule");
             newPlayer.AddComponent<SpriteRenderer>();
-            newPlayer.GetComponent<SpriteRenderer>().sprite = sprite;
+            newPlayer.GetComponent<SpriteRenderer>().sprite = sprites[i];
 
             newPlayer.AddComponent<PlayerScript>();
             newPlayer.GetComponent<PlayerScript>().SetPlayerIndex(i);

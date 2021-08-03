@@ -108,7 +108,7 @@
       }
 
       #rockButton {
-        background: url("https://lh3.googleusercontent.com/proxy/uLAbnhwbj2UB2J5xuaiK7h1ubcolu-1xh11NaGin0DAPRFE2pP-ZUS8lkU-VsEtAKTrbCpHGwYx08fvEWUJAEgWZyVtrEH_qbDY6rQnrz0w") no-repeat;
+        background: url("https://jokenpo.wesleymends.com.br/img/stone.png") no-repeat;
         background-size: contain; 
         left: 7%;
          width: 25%;
@@ -117,7 +117,7 @@
       }
 
       #papperButton {
-        background: url("https://lh3.googleusercontent.com/proxy/gXkxiRAWluo-_osk27IOkz1BJn07vuWI5HxEek52kThLC4G8nUOW33Bn8pcLU5_YVocl8_0vnN0U23aYlSfAlPc2yUbckWrMvEUyxULhObk") no-repeat;
+        background: url("https://jokenpo.wesleymends.com.br/img/paper.png") no-repeat;
         background-size: contain; 
         left: 37.5%;
         width: 25%;
@@ -126,7 +126,7 @@
       }
 
       #scissorsButton {
-        background: url("https://lh3.googleusercontent.com/proxy/08gOVOVXz9WIIpV0qo4MVyUllYgmH9Ge3J1kwnseS2oB1m2dT9QbEs190QzUNb9U-0g_IbjiL2XGx7fJjXpFKOJJ3lX4tm6K4OLulS2f5kjYaQ") no-repeat;
+        background: url("https://jokenpo.wesleymends.com.br/img/scissors.png") no-repeat;
         background-size: contain; 
         left: 68%;
         width: 25%;
@@ -174,6 +174,19 @@
         align-items: center;
         background: rgb(98,255,253);
         background: linear-gradient(101deg, rgba(98,255,253,1) 0%, rgba(253,2,2,1) 50%, rgba(253,2,118,1) 100%);
+        width: 100%;
+        height: 100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      #gameRules{
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        align-items: center;
+        background: rgb(146,24,127);
+        background: linear-gradient(101deg, rgba(146,24,127,1) 0%, rgba(34,162,136,1) 50%, rgba(255,212,177,1) 100%);
         width: 100%;
         height: 100%;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -261,6 +274,69 @@
         -webkit-text-stroke-width: 0.2px;
         -webkit-text-stroke-color: #71b9ce;
       }
+      .bg {
+            animation:slide 3s ease-in-out infinite alternate;
+            background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+            bottom:0;
+            left:-50%;
+            opacity:.5;
+            position:fixed;
+            right:-50%;
+            top:0;
+            z-index:-1;
+        }
+
+        .bg2 {
+            animation-direction:alternate-reverse;
+            animation-duration:4s;
+        }
+
+        .bg3 {
+            animation-duration:5s;
+        }
+
+        .content {
+            background-color:rgba(255,255,255,.8);
+            border-radius:.25em;
+            box-shadow:0 0 .25em rgba(0,0,0,.25);
+            box-sizing:border-box;
+            left:50%;
+            padding:10vmin;
+            position:fixed;
+            text-align:center;
+            top:50%;
+            transform:translate(-50%, -50%);
+        }
+
+        h1 {
+            font-family:monospace;
+        }
+
+        @keyframes slide {
+            0% {
+                transform:translateX(-25%);
+            }
+            100% {
+                transform:translateX(25%);
+            }
+        }
+        #doingCombat {
+	        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	        background-size: 400% 400%;
+	        animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
       /* animação pulsação botão */
       .pulse-button {
@@ -397,7 +473,12 @@
         </div>
     </div>
     <div class="view" id="waitForCombat">
-        <h1 id="name" class="typewriter" data-text="Wait for other player to choose..."></h1>
+        <div class="bg"></div>
+        <div class="bg bg2"></div>
+        <div class="bg bg3"></div>
+        <div class="content">
+            <h1 id="name" class="typewriter" data-text="Wait for other player to choose..."></h1>
+        </div>
     </div>
     <div class="view" id="doingCombat">
         <div style="color:white;font-size: 50px;"> Unveiling choices </div>

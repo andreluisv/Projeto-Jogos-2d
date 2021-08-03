@@ -21,20 +21,15 @@ public class LoadScript : MonoBehaviour
 
         sprites = Resources.LoadAll<Sprite>(spritePath);
 
+        /*
         foreach(var e in sprites) {
             Debug.Log(e.name);
         }
-
-        GameObject delicia = new GameObject("Delicia");
-        delicia.AddComponent<SpriteRenderer>();
-        
-
+        */
         for (int i = 0; i < gameLogic.playersID.Count; i++)
         {
             GameObject newPlayer = new GameObject("Player" + i);
             
-            //SpriteRenderer spriteR = new SpriteRenderer();
-            //spriteR.sprite = Resources.Load<Sprite>("Assets/Resources/Capsule");
             newPlayer.AddComponent<SpriteRenderer>();
             newPlayer.GetComponent<SpriteRenderer>().sprite = sprites[i];
 

@@ -4,30 +4,20 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    private List<Transform> waypoints;
-
-    private List<GameObject> boardPlaces;
-
+    private GameObject[] waypoints;
+    private GameObject[] boardPlaces;
     private Transform currentTarget;
-
     private GameLogic gameLogic;
-
     [SerializeField]
     private float moveSpeed = 5f;
-
     [SerializeField]
-    private int waypointsSize = 6;
-
+    private int boardSize = 6;
     [HideInInspector]
     public int waypointIndex = 0;
-
     private int laps = 0;
-
     private int toMove = 0;
     private int toMoveBack = 0;
-
     private int playerIndex;
-
     public bool isMoving = false;
     public bool isMovingBack = false;
 
@@ -35,20 +25,18 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
-        waypoints = new List<Transform>();
-        boardPlaces = new List<GameObject>();
+        boardPlaces = gameLogic.getBoardPlaces(); // new List<GameObject>();
+        waypoints = gameLogic.getWaypoints(playerIndex);
         this.tag = "Player" + playerIndex;
-        for (int i = 0; i < waypointsSize; i++)
-        {
-            GameObject waypoint = GameObject.Find("BoardWaypoints" + playerIndex + "/Waypoint" + i);
-            GameObject place = GameObject.Find("BoardPlaces/Board" + i);
-            waypoints.Add(waypoint.transform);
-            boardPlaces.Add(place);
-        }
+        // for (int i = 0; i < boardSize; i++)
+        // {
+        //     GameObject waypoint = GameObject.Find("BoardWaypoints" + playerIndex + "/Waypoint" + i);
+        //     GameObject place = GameObject.Find("BoardPlaces/Board" + i);
+        //     waypoints.Add(waypoint.transform);
+        //     boardPlaces.Add(place);
+        // }
         transform.position = waypoints[waypointIndex].transform.position;
-        currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
-
-        //GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/SquareMeme");
+        currentTarget = waypoints[(waypointIndex + 1) % boardSize].transform;
     }
 
     public void SetPlayerIndex(int playerIndex)
@@ -82,8 +70,8 @@ public class PlayerScript : MonoBehaviour
         if (transform.position == currentTarget.position)
         {
             waypointIndex += 1;
-            waypointIndex %= waypointsSize;
-            currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
+            waypointIndex %= boardSize;
+            currentTarget = waypoints[(waypointIndex + 1) % boardSize].transform;
             toMove -= 1;
             if (toMove == 0)
             {
@@ -99,15 +87,15 @@ public class PlayerScript : MonoBehaviour
     }
     void MoveBack()
     {
-        Transform backTarget = waypoints[(waypointIndex - 1 + waypointsSize) % waypointsSize];
-        currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
+        Transform backTarget = waypoints[(waypointIndex - 1 + boardSize) % boardSize].transform;
+        currentTarget = waypoints[(waypointIndex + 1) % boardSize].transform;
         transform.position = Vector2.MoveTowards(transform.position, backTarget.position, moveSpeed * Time.deltaTime);
         if (transform.position == backTarget.position)
         {
-            waypointIndex = waypointIndex - 1 + waypointsSize;
-            waypointIndex %= waypointsSize;
-            backTarget = waypoints[(waypointIndex - 1 + waypointsSize) % waypointsSize];
-            currentTarget = waypoints[(waypointIndex + 1) % waypointsSize];
+            waypointIndex = waypointIndex - 1 + boardSize;
+            waypointIndex %= boardSize;
+            backTarget = waypoints[(waypointIndex - 1 + boardSize) % boardSize].transform;
+            currentTarget = waypoints[(waypointIndex + 1) % boardSize].transform;
             toMoveBack -= 1;
             
             if (toMoveBack == 0)

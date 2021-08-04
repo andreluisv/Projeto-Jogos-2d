@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Newtonsoft.Json.Linq;
 
-public class JoKenPoScript : MonoBehaviour
+public class JoKenPoScript : MonoBehaviour, IMiniGameScript
 {
     public JoKenPoUIScript gameUI;
     public GameLogic gameLogic;
@@ -88,15 +89,15 @@ public class JoKenPoScript : MonoBehaviour
         isMoving = true;
     }
 
-    public void ReceivePlayerChoice(int fromID, string choice)
+    public void ReceivePlayerData(int fromID, JToken data)
     {
         if (fromID == challenger)
         {
-            leftID = choiceID[choice];
+            leftID = choiceID[data["JoKenPoMove"].ToString()];
         } 
         else if (fromID == defender)
         {
-            rightID = choiceID[choice];
+            rightID = choiceID[data["JoKenPoMove"].ToString()];
         }
         choiceCount += 1;
         if (choiceCount == 2)
@@ -125,7 +126,6 @@ public class JoKenPoScript : MonoBehaviour
     public void SetWinner() 
     {
         int aux = leftID - rightID;
-        Debug.Log(leftID + " " + rightID);
         if (aux == 0) 
         {
             winner = 0;

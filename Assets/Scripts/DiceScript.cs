@@ -21,7 +21,7 @@ public class DiceScript : MonoBehaviour
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
     }
 
-    public void OnMouseDown()
+    public void ThrowDice()
     {
         if (coroutineAllowed)
         {

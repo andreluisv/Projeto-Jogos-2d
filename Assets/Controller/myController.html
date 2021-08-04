@@ -423,7 +423,7 @@
         this.airconsole.message(AirConsole.SCREEN, { "action": msg });
     };
     App.prototype.pressJoKenPoOptions = function (msg) {
-        this.airconsole.message(AirConsole.SCREEN, { "action": "JoKenPoMove", "JoKenPoMove" : msg })
+        this.airconsole.message(AirConsole.SCREEN, { "action": "JoKenPoMove", "fromMiniGame" : true ,"JoKenPoMove" : msg })
     };
 
   </script>

@@ -29,8 +29,10 @@ public class GameLogic : MonoBehaviour
     private IMiniGameScript[] miniGamesScripts = new IMiniGameScript[boardSize];
     private List<GameObject> playersScripts;
     private List<int> playersIDs;
-    private Sprite[] sprites;
-    private string spritePath = "Sprites";
+    [SerializeField]
+    private GameObject[] playerPrefabs;
+    [SerializeField]
+    private Transform[] playerInitialPositions;
     [SerializeField]
     private static int boardSize = 6;
     [SerializeField]
@@ -50,14 +52,13 @@ public class GameLogic : MonoBehaviour
         }
         Destroy(GameObject.Find("MenuLogic"));
         playersScripts = new List<GameObject>();
-        sprites = Resources.LoadAll<Sprite>(spritePath);
         for (int i = 0; i < playersIDs.Count; i++)
         {
-            GameObject newPlayer = new GameObject("Player" + i);
-            newPlayer.AddComponent<SpriteRenderer>();
-            newPlayer.GetComponent<SpriteRenderer>().sprite = sprites[i];
-            newPlayer.AddComponent<PlayerScript>();
+            GameObject newPlayer = Instantiate(playerPrefabs[i], playerInitialPositions[i].position, Quaternion.identity);
             newPlayer.GetComponent<PlayerScript>().SetPlayerIndex(i);
+            // newPlayer.AddComponent<SpriteRenderer>();
+            // newPlayer.AddComponent<PlayerScript>();
+            // newPlayer.GetComponent<PlayerScript>().SetPlayerIndex(i);
             playersScripts.Add(newPlayer);
         }
         for (int i = 0; i < playersIDs.Count; i++)
@@ -183,12 +184,12 @@ public class GameLogic : MonoBehaviour
         SetDeviceView(curDefender, viewName);
     }
     
-    public GameObject[] getBoardPlaces()
+    public GameObject[] GetBoardPlaces()
     {
         return this.boardPlaces;
     }
 
-    public GameObject[] getWaypoints(int playerIndex)
+    public GameObject[] GetWaypoints(int playerIndex)
     {
         return waypointsArray[playerIndex].waypoints;
     }

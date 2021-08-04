@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4876173567792822208, guid: 219f9c5459e98e642a91f3f8e2403590, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4876173567792822209, guid: 219f9c5459e98e642a91f3f8e2403590, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -276,6 +280,14 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2654182723168084036, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654182723168084036, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654182723168084036, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15
       objectReference: {fileID: 0}
@@ -313,6 +325,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2654182723168084036, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654182723168084037, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654182723168084037, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
+      propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2654182723168084042, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
@@ -368,6 +388,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 915095417674164432, guid: 7fe2acf4f0ade8e48989fb481599bf0c, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 915095417674164433, guid: 7fe2acf4f0ade8e48989fb481599bf0c, type: 3}
       propertyPath: m_Name
       value: RightPapper

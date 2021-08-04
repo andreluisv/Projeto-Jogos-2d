@@ -20,22 +20,14 @@ public class PlayerScript : MonoBehaviour
     private int playerIndex;
     public bool isMoving = false;
     public bool isMovingBack = false;
-
-    private static readonly Color[] playerColors = {new Color(255,0,0,255), new Color(0,255,0,255), new Color(0,0,255,255)};
+    [SerializeField]
+    private Color playerColor;
     private void Start()
     {
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
-        boardPlaces = gameLogic.getBoardPlaces(); // new List<GameObject>();
-        waypoints = gameLogic.getWaypoints(playerIndex);
+        boardPlaces = gameLogic.GetBoardPlaces();
+        waypoints = gameLogic.GetWaypoints(playerIndex);
         this.tag = "Player" + playerIndex;
-        // for (int i = 0; i < boardSize; i++)
-        // {
-        //     GameObject waypoint = GameObject.Find("BoardWaypoints" + playerIndex + "/Waypoint" + i);
-        //     GameObject place = GameObject.Find("BoardPlaces/Board" + i);
-        //     waypoints.Add(waypoint.transform);
-        //     boardPlaces.Add(place);
-        // }
-        transform.position = waypoints[waypointIndex].transform.position;
         currentTarget = waypoints[(waypointIndex + 1) % boardSize].transform;
     }
 
@@ -61,7 +53,6 @@ public class PlayerScript : MonoBehaviour
         this.toMove = toMove;
         this.toMoveBack = toMove;
         isMoving = true;
-    
     }
 
     void Move()
@@ -112,6 +103,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (boardPlaces[waypointIndex].tag == "Neutral") 
             {
+                Debug.Log("Meme");
                 ChangeBoardPositionLeader();
                 gameLogic.EndMove();   
             } 
@@ -128,7 +120,8 @@ public class PlayerScript : MonoBehaviour
 
     public void ChangeBoardPositionLeader()
     {
-        boardPlaces[waypointIndex].GetComponent<SpriteRenderer>().color = playerColors[playerIndex];
+        Debug.Log("ok?");
+        boardPlaces[waypointIndex].GetComponent<SpriteRenderer>().color = playerColor;
         boardPlaces[waypointIndex].tag = this.tag;
     }
 }

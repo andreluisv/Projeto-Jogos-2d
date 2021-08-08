@@ -8,6 +8,7 @@ public class PlayerScript : MonoBehaviour
     private GameObject[] boardPlaces;
     private Transform currentTarget;
     private GameLogic gameLogic;
+    private Animator animator;
     [SerializeField]
     private float moveSpeed = 5f;
     [SerializeField]
@@ -24,6 +25,7 @@ public class PlayerScript : MonoBehaviour
     private Color playerColor;
     private void Start()
     {
+        animator = GetComponent<Animator>();
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         boardPlaces = gameLogic.GetBoardPlaces();
         waypoints = gameLogic.GetWaypoints(playerIndex);
@@ -53,6 +55,7 @@ public class PlayerScript : MonoBehaviour
         this.toMove = toMove;
         this.toMoveBack = toMove;
         isMoving = true;
+        animator.SetBool("IsMoving", true);
     }
 
     void Move()
@@ -67,6 +70,7 @@ public class PlayerScript : MonoBehaviour
             if (toMove == 0)
             {
                 isMoving = false;
+                animator.SetBool("IsMoving", false);
                 BoardPositionLogic();
             }
         }
@@ -75,6 +79,7 @@ public class PlayerScript : MonoBehaviour
     public void setMoveBack()
     {
         isMovingBack = true;
+        animator.SetBool("IsMoving", true);
     }
     void MoveBack()
     {
@@ -92,6 +97,7 @@ public class PlayerScript : MonoBehaviour
             if (toMoveBack == 0)
             {
                 isMovingBack = false;
+                animator.SetBool("IsMoving", false);
             }
         }
         
@@ -103,7 +109,6 @@ public class PlayerScript : MonoBehaviour
         {
             if (boardPlaces[waypointIndex].tag == "Neutral") 
             {
-                Debug.Log("Meme");
                 ChangeBoardPositionLeader();
                 gameLogic.EndMove();   
             } 
@@ -120,7 +125,6 @@ public class PlayerScript : MonoBehaviour
 
     public void ChangeBoardPositionLeader()
     {
-        Debug.Log("ok?");
         boardPlaces[waypointIndex].GetComponent<SpriteRenderer>().color = playerColor;
         boardPlaces[waypointIndex].tag = this.tag;
     }

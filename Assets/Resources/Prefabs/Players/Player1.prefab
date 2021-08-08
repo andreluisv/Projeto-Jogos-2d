@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 806745970707725435}
   - component: {fileID: 2642072604607245241}
   - component: {fileID: 456719820134571476}
+  - component: {fileID: 1625629189029197504}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Player1
@@ -26,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3059574937377856952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5299997, y: 1.09, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,8 +72,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 7e1eaa2eee5347a4b8aa64882b51dbcd, type: 3}
+  m_SortingOrder: 6
+  m_Sprite: {fileID: 21300000, guid: dcbfacee43ce17e43a4e48a64253547e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,4 +101,23 @@ MonoBehaviour:
   waypointIndex: 0
   isMoving: 0
   isMovingBack: 0
-  playerColor: {r: 0, g: 0.076369286, b: 1, a: 1}
+  playerColor: {r: 0.33962262, g: 0.17578146, b: 0.12335349, a: 1}
+--- !u!95 &1625629189029197504
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059574937377856952}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50f3486f954499d4c8dca437cb5af1ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

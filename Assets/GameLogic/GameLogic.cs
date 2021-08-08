@@ -127,9 +127,10 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator LoadMiniGame(float timeToWait)
     {
-        cameraObj.transform.position = new Vector3(0,-10f,-10f); // change to correct position
+        cameraObj.transform.position = new Vector3(0f, -100f, -10f);
         SceneManager.LoadSceneAsync("MiniGame0", LoadSceneMode.Additive);
         yield return new WaitForSeconds(timeToWait);
+        cameraObj.transform.position = GameObject.Find("CameraPosition").transform.position;
         miniGamesRules[curMiniGame].SetActive(false);
         miniGamesScripts[curMiniGame] = GameObject.Find(miniGamesObjNames[curMiniGame]).GetComponent<IMiniGameScript>();
         miniGamesScripts[curMiniGame].SetUIActive();

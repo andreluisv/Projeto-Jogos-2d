@@ -57,12 +57,12 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
 
     IEnumerator ResetGame() 
     {
-        gameUI.SetGameStatus("Draw");
+        // gameUI.SetGameStatus("Draw");
         yield return new WaitForSeconds(5f);
         choiceCount = 0;
         leftChoices[leftID].transform.position = leftReset.position;
         rightChoices[rightID].transform.position = rightReset.position;
-        gameUI.SetGameStatus("Waiting moves");
+        gameUI.FlipLoadAnimation();
         gameLogic.SetDeviceView(challenger, "joKenPoOptions");
         gameLogic.SetDeviceView(defender, "joKenPoOptions");
     }
@@ -71,12 +71,13 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
     {
         if (winner == -1)
         {
-            gameUI.SetGameStatus("Challenger Wins");
+            // do something
         }
         else if (winner == 1)
         {
-            gameUI.SetGameStatus("Defender Wins");
+            // do something
         }
+        gameUI.EndGame();
         gameLogic.SetWhoWins(winner);
         yield return new WaitForSeconds(5f);
         gameLogic.UnloadMiniGame("MiniGame0");
@@ -84,7 +85,7 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
 
     IEnumerator StartGame()
     {
-        gameUI.SetGameStatus("Prepare for fight");
+        gameUI.FlipLoadAnimation();
         yield return new WaitForSeconds(5f);
         isMoving = true;
     }

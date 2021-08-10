@@ -5,9 +5,21 @@ using UnityEngine.UI;
 
 public class JoKenPoUIScript : MonoBehaviour
 {
-    public Text status;
-    public void SetGameStatus(string newStatus)
+    public GameObject loading;
+    public GameObject leftSword;
+    public GameObject rightSword;
+
+    public void FlipLoadAnimation()
     {
-        status.text = newStatus;
+        loading.SetActive(!loading.activeSelf);
+        leftSword.SetActive(!leftSword.activeSelf);
+        rightSword.SetActive(!loading.activeSelf);
+    }
+
+    public void EndGame()
+    {
+        loading.SetActive(false);
+        leftSword.SetActive(false);
+        rightSword.SetActive(false);
     }
 }

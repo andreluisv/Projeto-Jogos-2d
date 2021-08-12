@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PlayerScript : MonoBehaviour
     [SerializeField]
     private int boardSize = 6;
     [HideInInspector]
+    public bool gameOver = false;
+    public int lifes = 5;
     public int waypointIndex = 0;
     private int laps = 0;
     private int toMove = 0;
@@ -21,11 +24,14 @@ public class PlayerScript : MonoBehaviour
     private int playerIndex;
     public bool isMoving = false;
     public bool isMovingBack = false;
+    public Image[] heartsPlayer;
+    public int pointerHearts = 4;
     [SerializeField]
     private Color playerColor;
     private void Start()
     {
         animator = GetComponent<Animator>();
+        heartsPlayer = GameObject.Find("Canvas/Top_Screen_UI/Hearts_Position/Player"+playerIndex).GetComponentsInChildren<Image>(true);
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         boardPlaces = gameLogic.GetBoardPlaces();
         waypoints = gameLogic.GetWaypoints(playerIndex);
@@ -78,9 +84,41 @@ public class PlayerScript : MonoBehaviour
 
     public void setMoveBack()
     {
+        this.loseLife();
         isMovingBack = true;
         animator.SetBool("IsMoving", true);
     }
+
+    private void loseLife() 
+    {
+        if (lifes > 0) {
+            lifes--;
+            this.removeHeart();
+        } else {
+            this.setGameOver();
+        }
+    }
+
+    public int getLifes() {
+        return lifes;
+    }
+
+    public bool getGameOver() {
+        return gameOver;
+    }
+
+    private void setGameOver() {
+        gameOver = true;
+    }
+
+    private void removeHeart() {
+        Debug.Log(heartsPlayer.Length);
+        Debug.Log(pointerHearts + " ESSE É O MEU TAMANHO");
+        heartsPlayer[pointerHearts].sprite = Resources.Load<Sprite>("Sprites/Hearts/HeartsFrame3");
+        pointerHearts--;
+    }
+
+
     void MoveBack()
     {
         Transform backTarget = waypoints[(waypointIndex - 1 + boardSize) % boardSize].transform;

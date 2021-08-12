@@ -63,8 +63,8 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
         leftChoices[leftID].transform.position = leftReset.position;
         rightChoices[rightID].transform.position = rightReset.position;
         gameUI.FlipLoadAnimation();
-        gameLogic.SetDeviceView(challenger, "joKenPoOptions");
-        gameLogic.SetDeviceView(defender, "joKenPoOptions");
+        gameLogic.SetDeviceView(challenger, "joKenPoOptions", true);
+        gameLogic.SetDeviceView(defender, "joKenPoOptions", false);
     }
 
     IEnumerator EndGame()

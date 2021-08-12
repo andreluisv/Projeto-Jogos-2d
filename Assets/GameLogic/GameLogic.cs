@@ -16,6 +16,7 @@ public class GameLogic : MonoBehaviour
 {
     public DiceScript dice;
     public GameObject cameraObj;
+    private bool isGameOver = false;
     private int playerToMove = 0;
     private int curMiniGame = 0;
     private int curChallenger = -1;
@@ -167,6 +168,8 @@ public class GameLogic : MonoBehaviour
                 if (playersIDs[i] == curChallenger)
                 {
                     playersScripts[i].GetComponent<PlayerScript>().setMoveBack();
+                    this.isGameOver = playersScripts[i].GetComponent<PlayerScript>().getGameOver();
+                    Debug.Log("Terminou o jogo = " + this.isGameOver + " Vidas do Player = " + playersScripts[i].GetComponent<PlayerScript>().getLifes());
                     break;
                 }    
             }

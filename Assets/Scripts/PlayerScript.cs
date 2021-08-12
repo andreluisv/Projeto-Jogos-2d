@@ -10,6 +10,7 @@ public class PlayerScript : MonoBehaviour
     private Transform currentTarget;
     private GameLogic gameLogic;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     [SerializeField]
     private float moveSpeed = 5f;
     [SerializeField]
@@ -31,6 +32,7 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         heartsPlayer = GameObject.Find("Canvas/Top_Screen_UI/Hearts_Position/Player"+playerIndex).GetComponentsInChildren<Image>(true);
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         boardPlaces = gameLogic.GetBoardPlaces();
@@ -54,6 +56,10 @@ public class PlayerScript : MonoBehaviour
         if (isMovingBack) {
             MoveBack();
         }
+        if (isMoving || isMovingBack)
+        {
+            FixSpriteDirection();
+        } 
     }
 
     public void DiceRoll(int toMove)
@@ -76,6 +82,7 @@ public class PlayerScript : MonoBehaviour
             if (toMove == 0)
             {
                 isMoving = false;
+                FixSpriteDirection();
                 animator.SetBool("IsMoving", false);
                 BoardPositionLogic();
             }
@@ -135,6 +142,7 @@ public class PlayerScript : MonoBehaviour
             if (toMoveBack == 0)
             {
                 isMovingBack = false;
+                FixSpriteDirection();
                 animator.SetBool("IsMoving", false);
             }
         }
@@ -165,5 +173,18 @@ public class PlayerScript : MonoBehaviour
     {
         boardPlaces[waypointIndex].GetComponent<SpriteRenderer>().color = playerColor;
         boardPlaces[waypointIndex].tag = this.tag;
+    }
+
+    private void FixSpriteDirection()
+    {
+        Vector3 dir = currentTarget.position - transform.position;
+        if (Mathf.Sign(dir.x) == -1)
+        {
+            spriteRenderer.flipX = true;
+        } 
+        else if (Mathf.Sign(dir.x) == 1)
+        {
+            spriteRenderer.flipX = false;
+        }
     }
 }

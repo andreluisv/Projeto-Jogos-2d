@@ -16,6 +16,7 @@ public class GameLogic : MonoBehaviour
 {
     public DiceScript dice;
     public GameObject cameraObj;
+    public GameObject mainGameUI;
     private bool isGameOver = false;
     private int playerToMove = 0;
     private int curMiniGame = 0;
@@ -23,11 +24,11 @@ public class GameLogic : MonoBehaviour
     private int curDefender = -1;
     private int curWinnerPlayer = -1;
     [SerializeField]
-    private int miniGamesAmount = 1;
+    private static int miniGamesAmount = 1;
     [SerializeField]
     private GameObject[] miniGamesRules;
     [SerializeField]
-    private IMiniGameScript[] miniGamesScripts = new IMiniGameScript[boardSize];
+    private IMiniGameScript[] miniGamesScripts = new IMiniGameScript[miniGamesAmount];
     private List<GameObject> playersScripts;
     private List<int> playersIDs;
     [SerializeField]
@@ -57,9 +58,6 @@ public class GameLogic : MonoBehaviour
         {
             GameObject newPlayer = Instantiate(playerPrefabs[i], playerInitialPositions[i].position, Quaternion.identity);
             newPlayer.GetComponent<PlayerScript>().SetPlayerIndex(i);
-            // newPlayer.AddComponent<SpriteRenderer>();
-            // newPlayer.AddComponent<PlayerScript>();
-            // newPlayer.GetComponent<PlayerScript>().SetPlayerIndex(i);
             playersScripts.Add(newPlayer);
         }
         for (int i = 0; i < playersIDs.Count; i++)
@@ -118,6 +116,7 @@ public class GameLogic : MonoBehaviour
     public void Duel(int challenger, int defender) 
     {
         curMiniGame = Random.Range(0, miniGamesAmount);
+        mainGameUI.SetActive(false);
         miniGamesRules[curMiniGame].SetActive(true);
         curChallenger = playersIDs[challenger];
         curDefender = playersIDs[defender];
@@ -150,6 +149,7 @@ public class GameLogic : MonoBehaviour
     public void UnloadMiniGame(string sceneName)
     {
         cameraObj.transform.position = new Vector3(0,0,-10f);
+        mainGameUI.SetActive(true);
         SceneManager.UnloadSceneAsync(sceneName);
         if (curWinnerPlayer == -1)
         {

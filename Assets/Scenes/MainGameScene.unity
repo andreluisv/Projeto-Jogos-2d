@@ -3513,6 +3513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dice: {fileID: 1249422848}
   cameraObj: {fileID: 739500789}
+  cinemachineCamera: {fileID: 739500790}
   mainGameUI: {fileID: 407356429}
   miniGamesRules:
   - {fileID: 1268273129}

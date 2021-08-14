@@ -137,6 +137,7 @@ public class PlayerScript : MonoBehaviour
             
             if (toMoveBack == 0)
             {
+                gameLogic.CameraFocusOnPlayerToMove();
                 isMovingBack = false;
                 FixSpriteDirection();
                 animator.SetBool("IsMoving", false);
@@ -152,7 +153,8 @@ public class PlayerScript : MonoBehaviour
             if (boardPlaces[waypointIndex].tag == "Neutral") 
             {
                 ChangeBoardPositionLeader();
-                gameLogic.EndMove();   
+                gameLogic.EndMove();
+                gameLogic.CameraFocusOnPlayerToMove();
             } 
             else 
             {
@@ -162,6 +164,7 @@ public class PlayerScript : MonoBehaviour
         else 
         {
             gameLogic.EndMove();
+            gameLogic.CameraFocusOnPlayerToMove();
         }
     }
 

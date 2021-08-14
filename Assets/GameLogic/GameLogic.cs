@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
+using Cinemachine;
 
 [System.Serializable]
 public class WaypointsArray
@@ -16,6 +17,7 @@ public class GameLogic : MonoBehaviour
 {
     public DiceScript dice;
     public GameObject cameraObj;
+    public CinemachineVirtualCamera cinemachineCamera;
     public GameObject mainGameUI;
     private bool isGameOver = false;
     private int playerToMove = 0;
@@ -71,6 +73,7 @@ public class GameLogic : MonoBehaviour
                 SetDeviceView(playersIDs[i], "notYourTurn");
             }
         }
+        CameraFocusOnPlayerToMove();
     }
 
     void Awake()
@@ -115,6 +118,7 @@ public class GameLogic : MonoBehaviour
 
     public void Duel(int challenger, int defender) 
     {
+        cinemachineCamera.Follow = null;
         curMiniGame = Random.Range(0, miniGamesAmount);
         mainGameUI.SetActive(false);
         miniGamesRules[curMiniGame].SetActive(true);
@@ -161,20 +165,23 @@ public class GameLogic : MonoBehaviour
                     break;
                 }    
             }
+            EndMove();
+            CameraFocusOnPlayerToMove();
         }
         else if (curWinnerPlayer == 1) {
             for (int i = 0; i < playersIDs.Count; i++)
             {
                 if (playersIDs[i] == curChallenger)
                 {
+                    cinemachineCamera.Follow = playersScripts[i].transform;
                     playersScripts[i].GetComponent<PlayerScript>().setMoveBack();
                     this.isGameOver = playersScripts[i].GetComponent<PlayerScript>().getGameOver();
                     Debug.Log("Terminou o jogo = " + this.isGameOver + " Vidas do Player = " + playersScripts[i].GetComponent<PlayerScript>().getLifes());
                     break;
                 }    
             }
+            EndMove();
         }
-        EndMove();
     }
 
     public void SetWhoWins(int winner)
@@ -196,5 +203,10 @@ public class GameLogic : MonoBehaviour
     public GameObject[] GetWaypoints(int playerIndex)
     {
         return waypointsArray[playerIndex].waypoints;
+    }
+
+    public void CameraFocusOnPlayerToMove()
+    {
+        cinemachineCamera.Follow = playersScripts[playerToMove].transform;
     }
 }

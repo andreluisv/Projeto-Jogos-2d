@@ -98,10 +98,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   boardSize: 6
+  gameOver: 0
+  lifes: 5
   waypointIndex: 0
   isMoving: 0
   isMovingBack: 0
-  playerColor: {r: 0.33962262, g: 0.17578146, b: 0.12335349, a: 1}
+  heartsPlayer: []
+  pointerHearts: 4
+  playerBanner: {fileID: 8818466294920863256, guid: b7e33110eadae7540a69beef670e9db7, type: 3}
 --- !u!95 &1625629189029197504
 Animator:
   serializedVersion: 3

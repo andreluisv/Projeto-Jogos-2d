@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
     public Image[] heartsPlayer;
     public int pointerHearts = 4;
     [SerializeField]
-    private Color playerColor;
+    private GameObject playerBanner;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -171,7 +171,7 @@ public class PlayerScript : MonoBehaviour
 
     public void ChangeBoardPositionLeader()
     {
-        boardPlaces[waypointIndex].GetComponent<SpriteRenderer>().color = playerColor;
+        boardPlaces[waypointIndex].GetComponent<BorderScript>().SetBanner(playerBanner);
         boardPlaces[waypointIndex].tag = this.tag;
     }
 

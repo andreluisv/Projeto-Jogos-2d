@@ -52,14 +52,12 @@ public class PlayerScript : MonoBehaviour
         if (isMoving)
         {
             Move();
+            FixSpriteDirection();
         }
         if (isMovingBack) {
             MoveBack();
+            FixSpriteDirectionBack();
         }
-        if (isMoving || isMovingBack)
-        {
-            FixSpriteDirection();
-        } 
     }
 
     public void DiceRoll(int toMove)
@@ -119,8 +117,6 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void removeHeart() {
-        Debug.Log(heartsPlayer.Length);
-        Debug.Log(pointerHearts + " ESSE É O MEU TAMANHO");
         heartsPlayer[pointerHearts].sprite = Resources.Load<Sprite>("Sprites/Hearts/HeartsFrame3");
         pointerHearts--;
     }
@@ -178,6 +174,19 @@ public class PlayerScript : MonoBehaviour
     private void FixSpriteDirection()
     {
         Vector3 dir = currentTarget.position - transform.position;
+        if (Mathf.Sign(dir.x) == -1)
+        {
+            spriteRenderer.flipX = true;
+        } 
+        else if (Mathf.Sign(dir.x) == 1)
+        {
+            spriteRenderer.flipX = false;
+        }
+    }
+    private void FixSpriteDirectionBack()
+    {
+        Transform backTarget = waypoints[(waypointIndex - 1 + boardSize) % boardSize].transform;
+        Vector3 dir = backTarget.position - transform.position;
         if (Mathf.Sign(dir.x) == -1)
         {
             spriteRenderer.flipX = true;

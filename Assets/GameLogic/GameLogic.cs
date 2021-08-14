@@ -16,6 +16,7 @@ public class WaypointsArray
 public class GameLogic : MonoBehaviour
 {
     public DiceScript dice;
+    public GameObject diceObj;
     public GameObject cameraObj;
     public CinemachineVirtualCamera cinemachineCamera;
     public GameObject mainGameUI;
@@ -118,6 +119,7 @@ public class GameLogic : MonoBehaviour
 
     public void Duel(int challenger, int defender) 
     {
+        diceObj.SetActive(false);
         cinemachineCamera.Follow = null;
         curMiniGame = Random.Range(0, miniGamesAmount);
         mainGameUI.SetActive(false);
@@ -182,6 +184,7 @@ public class GameLogic : MonoBehaviour
             }
             EndMove();
         }
+        diceObj.SetActive(true);
     }
 
     public void SetWhoWins(int winner)

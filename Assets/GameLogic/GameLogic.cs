@@ -163,12 +163,16 @@ public class GameLogic : MonoBehaviour
             {
                 if (playersIDs[i] == curChallenger)
                 {
-                    playersScripts[i].GetComponent<PlayerScript>().ChangeBoardPositionLeader();
+                    //ativar animação // eperar animação terminar
+                    cinemachineCamera.Follow = playersScripts[i].transform;
+                    playersScripts[i].GetComponent<PlayerScript>().setAttack();
+                    //playersScripts[i].GetComponent<PlayerScript>().ChangeBoardPositionLeader();
+                    
                     break;
                 }    
             }
             EndMove();
-            CameraFocusOnPlayerToMove();
+            //CameraFocusOnPlayerToMove();
         }
         else if (curWinnerPlayer == 1) {
             for (int i = 0; i < playersIDs.Count; i++)

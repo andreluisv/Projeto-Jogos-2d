@@ -29,6 +29,10 @@ public class PlayerScript : MonoBehaviour
     public int pointerHearts = 4;
     [SerializeField]
     private GameObject playerBanner;
+
+    private bool isAttacking = false;
+    private bool changingFlag = false;
+    private float targetTime = 0.0f;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -57,6 +61,25 @@ public class PlayerScript : MonoBehaviour
         if (isMovingBack) {
             MoveBack();
             FixSpriteDirectionBack();
+        }
+        if(isAttacking)
+        {
+            if(Time.time > targetTime)
+            {
+                isAttacking = false;
+                animator.SetBool("isAttacking", false);
+                changingFlag = true;
+                ChangeBoardPositionLeader();
+                targetTime = Time.time + 1.0f;
+            }
+        }
+        if(changingFlag)
+        {
+            if(Time.time > targetTime)
+            {
+                changingFlag = false;
+                gameLogic.CameraFocusOnPlayerToMove();
+            }
         }
     }
 
@@ -198,5 +221,11 @@ public class PlayerScript : MonoBehaviour
         {
             spriteRenderer.flipX = false;
         }
+    }
+    public void setAttack() 
+    {
+        animator.SetBool("isAttacking", true);
+        targetTime = Time.time + 0.9f;
+        isAttacking = true;
     }
 }

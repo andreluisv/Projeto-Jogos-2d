@@ -180,7 +180,8 @@ public class GameLogic : MonoBehaviour
                 if (playersIDs[i] == curChallenger)
                 {
                     cinemachineCamera.Follow = playersScripts[i].transform;
-                    playersScripts[i].GetComponent<PlayerScript>().setMoveBack();
+                    //playersScripts[i].GetComponent<PlayerScript>().setMoveBack();
+                    playersScripts[i].GetComponent<PlayerScript>().setTakeDamage();
                     this.isGameOver = playersScripts[i].GetComponent<PlayerScript>().getGameOver();
                     Debug.Log("Terminou o jogo = " + this.isGameOver + " Vidas do Player = " + playersScripts[i].GetComponent<PlayerScript>().getLifes());
                     break;

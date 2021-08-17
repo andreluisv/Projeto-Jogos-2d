@@ -103,6 +103,7 @@ MonoBehaviour:
   waypointIndex: 0
   isMoving: 0
   isMovingBack: 0
+  isDamaged: 0
   heartsPlayer: []
   pointerHearts: 4
   playerBanner: {fileID: 8818466294920863256, guid: b7e33110eadae7540a69beef670e9db7, type: 3}

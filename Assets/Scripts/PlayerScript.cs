@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour
     private int playerIndex;
     public bool isMoving = false;
     public bool isMovingBack = false;
+    public bool isDamaged = false;
     public Image[] heartsPlayer;
     public int pointerHearts = 4;
     [SerializeField]
@@ -43,6 +44,7 @@ public class PlayerScript : MonoBehaviour
         waypoints = gameLogic.GetWaypoints(playerIndex);
         this.tag = "Player" + playerIndex;
         currentTarget = waypoints[(waypointIndex + 1) % boardSize].transform;
+        animator.SetBool("isHurt", false);
     }
 
     public void SetPlayerIndex(int playerIndex)
@@ -81,6 +83,17 @@ public class PlayerScript : MonoBehaviour
                 gameLogic.CameraFocusOnPlayerToMove();
             }
         }
+        if (isDamaged)
+        {
+            Debug.Log("time: " + Time.time + " targert time: " + targetTime);
+            if(Time.time > targetTime)
+            {
+                isDamaged = false;
+                animator.SetBool("isHurt", false);
+                gameLogic.CameraFocusOnPlayerToMove();
+            
+            }
+        }
     }
 
     public void DiceRoll(int toMove)
@@ -115,6 +128,14 @@ public class PlayerScript : MonoBehaviour
         this.loseLife();
         isMovingBack = true;
         animator.SetBool("IsMoving", true);
+    }
+
+    public void setTakeDamage()
+    {
+        this.loseLife();
+        isDamaged = true;
+        animator.SetBool("isHurt", true);
+        targetTime = Time.time + 1.4f;
     }
 
     private void loseLife() 

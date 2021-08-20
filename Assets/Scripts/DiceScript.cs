@@ -16,7 +16,7 @@ public class DiceScript : MonoBehaviour
     void Start()
     {
         rend = GetComponent<SpriteRenderer>();
-        diceSides = Resources.LoadAll<Sprite>("Dices/");
+        diceSides = Resources.LoadAll<Sprite>("Sprites/Dices/");
         rend.sprite = diceSides[5];
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
     }

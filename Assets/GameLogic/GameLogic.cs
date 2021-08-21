@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
+using UnityEngine.Audio;
 using Cinemachine;
 
 [System.Serializable]
@@ -19,7 +20,16 @@ public class GameLogic : MonoBehaviour
     public GameObject diceObj;
     public GameObject cameraObj;
     public CinemachineVirtualCamera cinemachineCamera;
+    public AudioSource music;
     public GameObject mainGameUI;
+    [SerializeField]
+    private AudioClip win_challengerSFX = null;
+    [SerializeField]
+    private AudioClip lose_challengerSFX = null;
+    [SerializeField]
+    private AudioClip walkingSFX = null;
+    [SerializeField]
+    private AudioSource sfxSource;
     private LevelTransitionScript transitionScript;
     private bool isGameOver = false;
     private int playerToMove = 0;
@@ -132,6 +142,7 @@ public class GameLogic : MonoBehaviour
 
     IEnumerator LoadMiniGame(float timeToWait)
     {
+        music.mute = true;
         transitionScript.LoadLevel("MiniGame0", true, 1f, LoadSceneMode.Additive);
         yield return new WaitForSeconds(1f);
         cameraObj.transform.position = new Vector3(0f, -100f, -10f);
@@ -178,6 +189,7 @@ public class GameLogic : MonoBehaviour
                 {
                     //ativar animação // eperar animação terminar
                     cinemachineCamera.Follow = playersScripts[i].transform;
+                    sfxSource.PlayOneShot(win_challengerSFX, 0.5f);
                     playersScripts[i].GetComponent<PlayerScript>().setAttack();
                     //playersScripts[i].GetComponent<PlayerScript>().ChangeBoardPositionLeader();
                     
@@ -195,6 +207,7 @@ public class GameLogic : MonoBehaviour
                     cinemachineCamera.Follow = playersScripts[i].transform;
                     //playersScripts[i].GetComponent<PlayerScript>().setMoveBack();
                     playersScripts[i].GetComponent<PlayerScript>().setTakeDamage();
+                    sfxSource.PlayOneShot(lose_challengerSFX, 0.5f);
                     this.isGameOver = playersScripts[i].GetComponent<PlayerScript>().getGameOver();
                     Debug.Log("Terminou o jogo = " + this.isGameOver + " Vidas do Player = " + playersScripts[i].GetComponent<PlayerScript>().getLifes());
                     break;
@@ -203,6 +216,7 @@ public class GameLogic : MonoBehaviour
             EndMove();
         }
         mainGameUI.SetActive(true);
+        music.mute = false;
         diceObj.SetActive(true);
     }
 

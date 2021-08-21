@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
@@ -11,6 +12,7 @@ public class PlayerScript : MonoBehaviour
     private GameLogic gameLogic;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
+    private AudioSource playerAudio;
     [SerializeField]
     private float moveSpeed = 5f;
     [SerializeField]
@@ -36,6 +38,7 @@ public class PlayerScript : MonoBehaviour
     private float targetTime = 0.0f;
     private void Start()
     {
+        playerAudio = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         heartsPlayer = GameObject.Find("Canvas/Top_Screen_UI/Hearts_Position/Player"+playerIndex).GetComponentsInChildren<Image>(true);
@@ -101,6 +104,7 @@ public class PlayerScript : MonoBehaviour
         this.toMove = toMove;
         this.toMoveBack = toMove;
         isMoving = true;
+        playerAudio.Play();
         animator.SetBool("IsMoving", true);
     }
 
@@ -118,6 +122,7 @@ public class PlayerScript : MonoBehaviour
                 isMoving = false;
                 FixSpriteDirection();
                 animator.SetBool("IsMoving", false);
+                playerAudio.Stop();
                 BoardPositionLogic();
             }
         }

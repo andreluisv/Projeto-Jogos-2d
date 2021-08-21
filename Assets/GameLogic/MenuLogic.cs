@@ -10,6 +10,7 @@ public class MenuLogic : MonoBehaviour
     private int playersConnected = 0;
     private int playerToMove = 0;
     private List<int> playersReady;
+    public LevelTransitionScript levelTransition;
     
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class MenuLogic : MonoBehaviour
             playersReady.Add(fromDeviceID);
             if (playersReady.Count == playersConnected)
             {
-                SceneManager.LoadSceneAsync("MainGameScene");
+                levelTransition.LoadLevel("MainGameScene", true);
             } 
             else
             {

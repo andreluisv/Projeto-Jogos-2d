@@ -20,6 +20,7 @@ public class GameLogic : MonoBehaviour
     public GameObject cameraObj;
     public CinemachineVirtualCamera cinemachineCamera;
     public GameObject mainGameUI;
+    private LevelTransitionScript transitionScript;
     private bool isGameOver = false;
     private int playerToMove = 0;
     private int curMiniGame = 0;
@@ -51,6 +52,7 @@ public class GameLogic : MonoBehaviour
     {
         playersIDs = new List<int>();
         List<int> playersReady = GameObject.Find("MenuLogic").GetComponent<MenuLogic>().GetPlayersReady();
+        transitionScript = GameObject.Find("LevelTransition").GetComponent<LevelTransitionScript>();
         foreach (int id in playersReady)
         {
             playersIDs.Add(id);
@@ -119,22 +121,27 @@ public class GameLogic : MonoBehaviour
 
     public void Duel(int challenger, int defender) 
     {
-        diceObj.SetActive(false);
         cinemachineCamera.Follow = null;
         curMiniGame = Random.Range(0, miniGamesAmount);
-        mainGameUI.SetActive(false);
-        miniGamesRules[curMiniGame].SetActive(true);
         curChallenger = playersIDs[challenger];
         curDefender = playersIDs[defender];
         SetDeviceView(curChallenger, "gameRules");
         SetDeviceView(curDefender, "gameRules");
-        StartCoroutine(LoadMiniGame(10f));
+        StartCoroutine(LoadMiniGame(8f));
     }
 
     IEnumerator LoadMiniGame(float timeToWait)
     {
+        transitionScript.LoadLevel("MiniGame0", true, 1f, LoadSceneMode.Additive);
+        yield return new WaitForSeconds(1f);
         cameraObj.transform.position = new Vector3(0f, -100f, -10f);
-        SceneManager.LoadSceneAsync("MiniGame0", LoadSceneMode.Additive);
+        diceObj.SetActive(false);
+        mainGameUI.SetActive(false);
+        miniGamesRules[curMiniGame].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        // yield return new WaitForSeconds(1f);
+        // transitionScript.FadeOut();
+        // SceneManager.LoadSceneAsync("MiniGame0", LoadSceneMode.Additive);
         yield return new WaitForSeconds(timeToWait);
         cameraObj.transform.position = GameObject.Find("CameraPosition").transform.position;
         miniGamesRules[curMiniGame].SetActive(false);
@@ -154,8 +161,14 @@ public class GameLogic : MonoBehaviour
 
     public void UnloadMiniGame(string sceneName)
     {
+        StartCoroutine(UnloadMiniGameCoroutine(sceneName));
+    }
+    IEnumerator UnloadMiniGameCoroutine(string sceneName)
+    {
+        transitionScript.FadeIn();
+        yield return new WaitForSeconds(1f);
+        transitionScript.FadeOut();
         cameraObj.transform.position = new Vector3(0,0,-10f);
-        mainGameUI.SetActive(true);
         SceneManager.UnloadSceneAsync(sceneName);
         if (curWinnerPlayer == -1)
         {
@@ -189,6 +202,7 @@ public class GameLogic : MonoBehaviour
             }
             EndMove();
         }
+        mainGameUI.SetActive(true);
         diceObj.SetActive(true);
     }
 

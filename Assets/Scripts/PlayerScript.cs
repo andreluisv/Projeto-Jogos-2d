@@ -17,7 +17,7 @@ public class PlayerScript : MonoBehaviour
     private int boardSize = 6;
     [HideInInspector]
     public bool gameOver = false;
-    public int lifes = 5;
+    private int lifes = 3;
     public int waypointIndex = 0;
     private int laps = 0;
     private int toMove = 0;
@@ -27,7 +27,7 @@ public class PlayerScript : MonoBehaviour
     public bool isMovingBack = false;
     public bool isDamaged = false;
     public Image[] heartsPlayer;
-    public int pointerHearts = 4;
+    private int pointerHearts = 2;
     [SerializeField]
     private GameObject playerBanner;
 
@@ -161,6 +161,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void removeHeart() {
+        Debug.Log(heartsPlayer.Length + " " + pointerHearts);
         heartsPlayer[pointerHearts].sprite = Resources.Load<Sprite>("Sprites/Hearts/HeartsFrame3");
         pointerHearts--;
     }

@@ -145,14 +145,10 @@ public class GameLogic : MonoBehaviour
         music.mute = true;
         transitionScript.LoadLevel("MiniGame0", true, 1f, LoadSceneMode.Additive);
         yield return new WaitForSeconds(1f);
-        cameraObj.transform.position = new Vector3(0f, -100f, -10f);
         diceObj.SetActive(false);
         mainGameUI.SetActive(false);
         miniGamesRules[curMiniGame].SetActive(true);
-        yield return new WaitForSeconds(1f);
-        // yield return new WaitForSeconds(1f);
-        // transitionScript.FadeOut();
-        // SceneManager.LoadSceneAsync("MiniGame0", LoadSceneMode.Additive);
+        cameraObj.transform.position = new Vector3(0f, -1000f, -10f);
         yield return new WaitForSeconds(timeToWait);
         cameraObj.transform.position = GameObject.Find("CameraPosition").transform.position;
         miniGamesRules[curMiniGame].SetActive(false);

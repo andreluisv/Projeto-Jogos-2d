@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  boardSize: 13
+  boardSize: 14
   gameOver: 0
   waypointIndex: 0
   isMoving: 0

@@ -15,8 +15,7 @@ public class PlayerScript : MonoBehaviour
     private AudioSource playerAudio;
     [SerializeField]
     private float moveSpeed = 5f;
-    [SerializeField]
-    private int boardSize = 6;
+    private int boardSize = -1;
     [HideInInspector]
     public bool gameOver = false;
     private int lifes = 3;
@@ -41,10 +40,11 @@ public class PlayerScript : MonoBehaviour
         playerAudio = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        heartsPlayer = GameObject.Find("Canvas/Top_Screen_UI/Hearts_Position/Player"+playerIndex).GetComponentsInChildren<Image>(true);
+        heartsPlayer = GameObject.Find("MainUI/Top_Screen_UI/Hearts_Position/Player"+playerIndex).GetComponentsInChildren<Image>(true);
         gameLogic = GameObject.Find("GameLogic").GetComponent<GameLogic>();
         boardPlaces = gameLogic.GetBoardPlaces();
         waypoints = gameLogic.GetWaypoints(playerIndex);
+        boardSize = boardPlaces.Length;
         this.tag = "Player" + playerIndex;
         currentTarget = waypoints[(waypointIndex + 1) % boardSize].transform;
         animator.SetBool("isHurt", false);

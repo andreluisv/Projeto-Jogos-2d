@@ -31,7 +31,6 @@ public class PlayerScript : MonoBehaviour
     private int pointerHearts = 2;
     [SerializeField]
     private GameObject playerBanner;
-
     private bool isAttacking = false;
     private bool changingFlag = false;
     private float targetTime = 0.0f;
@@ -208,7 +207,8 @@ public class PlayerScript : MonoBehaviour
             } 
             else 
             {
-                gameLogic.Duel(this.tag[this.tag.Length-1]-'0', boardPlaces[waypointIndex].tag[boardPlaces[waypointIndex].tag.Length-1]-'0');
+                Transform background = boardPlaces[waypointIndex].GetComponent<BorderScript>().minigameBackground;
+                gameLogic.Duel(this.tag[this.tag.Length-1]-'0', boardPlaces[waypointIndex].tag[boardPlaces[waypointIndex].tag.Length-1]-'0', background);
             }
         } 
         else 

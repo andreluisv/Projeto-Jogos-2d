@@ -6,6 +6,8 @@ public class BorderScript : MonoBehaviour
 {
     private GameObject banner = null;
     public Transform bannerTransform;
+    public Transform minigameBackground;
+    
     public void SetBanner(GameObject newBanner) 
     {
         Destroy(banner);

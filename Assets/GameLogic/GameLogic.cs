@@ -129,7 +129,7 @@ public class GameLogic : MonoBehaviour
         }
     }
 
-    public void Duel(int challenger, int defender) 
+    public void Duel(int challenger, int defender, Transform background) 
     {
         cinemachineCamera.Follow = null;
         curMiniGame = Random.Range(0, miniGamesAmount);
@@ -137,24 +137,22 @@ public class GameLogic : MonoBehaviour
         curDefender = playersIDs[defender];
         SetDeviceView(curChallenger, "gameRules");
         SetDeviceView(curDefender, "gameRules");
-        StartCoroutine(LoadMiniGame(8f));
+        StartCoroutine(LoadMiniGame(8f, background));
     }
 
-    IEnumerator LoadMiniGame(float timeToWait)
+    IEnumerator LoadMiniGame(float timeToWait, Transform background)
     {
         music.mute = true;
         transitionScript.LoadLevel("MiniGame0", true, 1f, LoadSceneMode.Additive);
         yield return new WaitForSeconds(1f);
-        cameraObj.transform.position = new Vector3(0f, -100f, -10f);
         diceObj.SetActive(false);
         mainGameUI.SetActive(false);
         miniGamesRules[curMiniGame].SetActive(true);
-        yield return new WaitForSeconds(1f);
-        // yield return new WaitForSeconds(1f);
-        // transitionScript.FadeOut();
-        // SceneManager.LoadSceneAsync("MiniGame0", LoadSceneMode.Additive);
+        cameraObj.transform.position = new Vector3(0f, -1000f, -10f);
         yield return new WaitForSeconds(timeToWait);
-        cameraObj.transform.position = GameObject.Find("CameraPosition").transform.position;
+        Transform cameraTransform = GameObject.Find("CameraPosition").transform;
+        cameraTransform.position = background.position;
+        cameraObj.transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, -10f);
         miniGamesRules[curMiniGame].SetActive(false);
         miniGamesScripts[curMiniGame] = GameObject.Find(miniGamesObjNames[curMiniGame]).GetComponent<IMiniGameScript>();
         miniGamesScripts[curMiniGame].SetUIActive();

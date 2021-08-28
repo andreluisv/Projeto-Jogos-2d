@@ -142,12 +142,12 @@ TextureImporter:
       name: Fiona_Idle_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 385
-        height: 600
+        width: 390
+        height: 609
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -163,12 +163,12 @@ TextureImporter:
       name: Fiona_Idle_1
       rect:
         serializedVersion: 2
-        x: 403
+        x: 399
         y: 0
-        width: 385
-        height: 600
+        width: 390
+        height: 609
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: Fiona_Idle_2
       rect:
         serializedVersion: 2
-        x: 803
+        x: 801
         y: 0
-        width: 385
-        height: 600
+        width: 390
+        height: 609
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -205,12 +205,12 @@ TextureImporter:
       name: Fiona_Idle_3
       rect:
         serializedVersion: 2
-        x: 1201
+        x: 1197
         y: 0
-        width: 385
-        height: 600
+        width: 390
+        height: 609
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

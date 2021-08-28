@@ -1,25 +1,37 @@
 fileFormatVersion: 2
-guid: b9359b99f866d5542a68513e8c866df1
+guid: 83a5f0c0c4f5d6c479b4b4985c1c3428
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7978424282181987235
-    second: Hawy_Runing_SpriteSheet_0
+      213: 2535782937328556773
+    second: Placeholder e bandeiras_0
   - first:
-      213: 2456576443363893506
-    second: Hawy_Runing_SpriteSheet_1
+      213: -8549416716430215536
+    second: Placeholder e bandeiras_1
   - first:
-      213: 7767795922403479735
-    second: Hawy_Runing_SpriteSheet_2
+      213: -1619252932702622652
+    second: Placeholder e bandeiras_2
   - first:
-      213: 4437651250162803338
-    second: Hawy_Runing_SpriteSheet_3
+      213: -6315443593749774914
+    second: Placeholder e bandeiras_3
   - first:
-      213: 2912694254388857474
-    second: Hawy_Runing_SpriteSheet_4
+      213: -4998652069506692118
+    second: Placeholder e bandeiras_4
   - first:
-      213: -3844711768553143776
-    second: Hawy_Runing_SpriteSheet_5
+      213: -8171297954602148089
+    second: Placeholder_And_Flags_0
+  - first:
+      213: -6802242236927331962
+    second: Placeholder_And_Flags_1
+  - first:
+      213: -6901488121138987050
+    second: Placeholder_And_Flags_2
+  - first:
+      213: 1409208897295016816
+    second: Placeholder_And_Flags_3
+  - first:
+      213: -3754716567107829324
+    second: Placeholder_And_Flags_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,127 +157,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_0
+      name: Placeholder e bandeiras_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 37
-        width: 400
-        height: 570
+        x: 297
+        y: 223
+        width: 162
+        height: 130
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3abeec6fc9e09be60800000000000000
-      internalID: 7978424282181987235
+      spriteID: 5ea17f67529e03320800000000000000
+      internalID: 2535782937328556773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_1
+      name: Placeholder e bandeiras_1
       rect:
         serializedVersion: 2
-        x: 660
-        y: 37
-        width: 400
-        height: 570
+        x: 774
+        y: 142
+        width: 247
+        height: 295
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2012c4e7243871220800000000000000
-      internalID: 2456576443363893506
+      spriteID: 096f36c0bce5a5980800000000000000
+      internalID: -8549416716430215536
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_2
+      name: Placeholder e bandeiras_2
       rect:
         serializedVersion: 2
-        x: 1208
-        y: 37
-        width: 400
-        height: 570
+        x: 1016
+        y: 322
+        width: 8
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b056926c31cccb60800000000000000
-      internalID: 7767795922403479735
+      spriteID: 44c20c079024789e0800000000000000
+      internalID: -1619252932702622652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_3
+      name: Placeholder e bandeiras_3
       rect:
         serializedVersion: 2
-        x: 1785
-        y: 37
-        width: 400
-        height: 570
+        x: 1284
+        y: 141
+        width: 247
+        height: 295
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a82a503ec44b59d30800000000000000
-      internalID: 4437651250162803338
+      spriteID: ebd378b13890b58a0800000000000000
+      internalID: -6315443593749774914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_4
+      name: Placeholder e bandeiras_4
       rect:
         serializedVersion: 2
-        x: 2399
-        y: 37
-        width: 400
-        height: 570
+        x: 1527
+        y: 322
+        width: 8
+        height: 6
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28a4b240ef7fb6820800000000000000
-      internalID: 2912694254388857474
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_5
-      rect:
-        serializedVersion: 2
-        x: 3010
-        y: 37
-        width: 400
-        height: 570
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02240a34407d4aac0800000000000000
-      internalID: -3844711768553143776
+      spriteID: aeb48414d6831aab0800000000000000
+      internalID: -4998652069506692118
       vertices: []
       indices: 
       edges: []

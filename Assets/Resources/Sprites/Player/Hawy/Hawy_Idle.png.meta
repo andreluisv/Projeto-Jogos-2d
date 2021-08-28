@@ -1,25 +1,19 @@
 fileFormatVersion: 2
-guid: b9359b99f866d5542a68513e8c866df1
+guid: 4e99b34ebce75b3469aa61e3ec2e7e58
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7978424282181987235
-    second: Hawy_Runing_SpriteSheet_0
+      213: 594055782536795183
+    second: Hawy_Idle_0
   - first:
-      213: 2456576443363893506
-    second: Hawy_Runing_SpriteSheet_1
+      213: 8374159147534811619
+    second: Hawy_Idle_1
   - first:
-      213: 7767795922403479735
-    second: Hawy_Runing_SpriteSheet_2
+      213: -1695145119250687845
+    second: Hawy_Idle_2
   - first:
-      213: 4437651250162803338
-    second: Hawy_Runing_SpriteSheet_3
-  - first:
-      213: 2912694254388857474
-    second: Hawy_Runing_SpriteSheet_4
-  - first:
-      213: -3844711768553143776
-    second: Hawy_Runing_SpriteSheet_5
+      213: 805760510777497199
+    second: Hawy_Idle_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -145,127 +139,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_0
+      name: Hawy_Idle_0
       rect:
         serializedVersion: 2
-        x: 53
-        y: 37
-        width: 400
+        x: 4
+        y: 0
+        width: 385
         height: 570
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3abeec6fc9e09be60800000000000000
-      internalID: 7978424282181987235
+      spriteID: f245fd636928e3800800000000000000
+      internalID: 594055782536795183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_1
+      name: Hawy_Idle_1
       rect:
         serializedVersion: 2
-        x: 660
-        y: 37
-        width: 400
+        x: 402
+        y: 0
+        width: 385
         height: 570
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2012c4e7243871220800000000000000
-      internalID: 2456576443363893506
+      spriteID: 3e18661606df63470800000000000000
+      internalID: 8374159147534811619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_2
+      name: Hawy_Idle_2
       rect:
         serializedVersion: 2
-        x: 1208
-        y: 37
-        width: 400
+        x: 804
+        y: 0
+        width: 385
         height: 570
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b056926c31cccb60800000000000000
-      internalID: 7767795922403479735
+      spriteID: b98535cce72a978e0800000000000000
+      internalID: -1695145119250687845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_3
+      name: Hawy_Idle_3
       rect:
         serializedVersion: 2
-        x: 1785
-        y: 37
-        width: 400
+        x: 1200
+        y: 0
+        width: 385
         height: 570
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a82a503ec44b59d30800000000000000
-      internalID: 4437651250162803338
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_4
-      rect:
-        serializedVersion: 2
-        x: 2399
-        y: 37
-        width: 400
-        height: 570
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28a4b240ef7fb6820800000000000000
-      internalID: 2912694254388857474
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hawy_Runing_SpriteSheet_5
-      rect:
-        serializedVersion: 2
-        x: 3010
-        y: 37
-        width: 400
-        height: 570
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02240a34407d4aac0800000000000000
-      internalID: -3844711768553143776
+      spriteID: f661eea5ae2ae2b00800000000000000
+      internalID: 805760510777497199
       vertices: []
       indices: 
       edges: []

@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: 20097708eb1cea242bc5762c0dac2359
+guid: a18a18b92e328ea4881a779e1c2e7fa3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 594055782536795183
-    second: Hawy_Idle_0
+      213: 5378778149038979936
+    second: Fiona_Running_0
   - first:
-      213: 8374159147534811619
-    second: Hawy_Idle_1
+      213: 8312379590902709650
+    second: Fiona_Running_1
   - first:
-      213: -1695145119250687845
-    second: Hawy_Idle_2
+      213: 865034838502946408
+    second: Fiona_Running_2
   - first:
-      213: 805760510777497199
-    second: Hawy_Idle_3
+      213: -3777764874708994082
+    second: Fiona_Running_3
+  - first:
+      213: -720151984867215758
+    second: Fiona_Running_4
+  - first:
+      213: -678103502554220028
+    second: Fiona_Running_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -139,13 +145,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hawy_Idle_0
+      name: Fiona_Running_0
       rect:
         serializedVersion: 2
-        x: 10
+        x: 0
         y: 0
-        width: 390
-        height: 600
+        width: 399
+        height: 597
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f245fd636928e3800800000000000000
-      internalID: 594055782536795183
+      spriteID: 06bf9138a3245aa40800000000000000
+      internalID: 5378778149038979936
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Idle_1
+      name: Fiona_Running_1
       rect:
         serializedVersion: 2
-        x: 410
+        x: 399
         y: 0
-        width: 390
-        height: 600
+        width: 399
+        height: 597
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +180,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e18661606df63470800000000000000
-      internalID: 8374159147534811619
+      spriteID: 29d76f172318b5370800000000000000
+      internalID: 8312379590902709650
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Idle_2
+      name: Fiona_Running_2
       rect:
         serializedVersion: 2
-        x: 808
+        x: 798
         y: 0
-        width: 390
-        height: 600
+        width: 399
+        height: 597
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +201,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b98535cce72a978e0800000000000000
-      internalID: -1695145119250687845
+      spriteID: 8663e4b3a98310c00800000000000000
+      internalID: 865034838502946408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hawy_Idle_3
+      name: Fiona_Running_3
       rect:
         serializedVersion: 2
-        x: 1207
+        x: 1197
         y: 0
-        width: 390
-        height: 600
+        width: 399
+        height: 597
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,8 +222,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f661eea5ae2ae2b00800000000000000
-      internalID: 805760510777497199
+      spriteID: ed7b506acdea29bc0800000000000000
+      internalID: -3777764874708994082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fiona_Running_4
+      rect:
+        serializedVersion: 2
+        x: 1596
+        y: 0
+        width: 399
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27672b5d5918106f0800000000000000
+      internalID: -720151984867215758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Fiona_Running_5
+      rect:
+        serializedVersion: 2
+        x: 1995
+        y: 0
+        width: 399
+        height: 597
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40abe490574e696f0800000000000000
+      internalID: -678103502554220028
       vertices: []
       indices: 
       edges: []

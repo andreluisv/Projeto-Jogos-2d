@@ -6,20 +6,17 @@ using UnityEngine.UI;
 public class JoKenPoUIScript : MonoBehaviour
 {
     public GameObject loading;
-    public GameObject leftSword;
-    public GameObject rightSword;
+    public GameObject rotatingTriangle;
 
     public void FlipLoadAnimation()
     {
         loading.SetActive(!loading.activeSelf);
-        leftSword.SetActive(!leftSword.activeSelf);
-        rightSword.SetActive(!loading.activeSelf);
+        rotatingTriangle.SetActive(!rotatingTriangle.activeSelf);
     }
 
     public void EndGame()
     {
         loading.SetActive(false);
-        leftSword.SetActive(false);
-        rightSword.SetActive(false);
+        rotatingTriangle.SetActive(false);
     }
 }

@@ -449,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2654182723168084037, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2654182723168084037, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
       propertyPath: m_FlipY
@@ -1569,6 +1569,10 @@ PrefabInstance:
     - target: {fileID: 2654182723168084036, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2654182723168084037, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
+      propertyPath: m_FlipX
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2654182723168084037, guid: 45caf7165c7889f4ba1676c9fb999f1d, type: 3}
       propertyPath: m_SortingOrder

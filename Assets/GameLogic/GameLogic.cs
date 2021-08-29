@@ -8,6 +8,8 @@ using Newtonsoft.Json.Linq;
 using UnityEngine.Audio;
 using Cinemachine;
 
+public enum Characters {Hawy, Fiona};
+
 [System.Serializable]
 public class WaypointsArray
 {
@@ -54,12 +56,14 @@ public class GameLogic : MonoBehaviour
     [SerializeField]
     private GameObject[] boardPlaces;
     public WaypointsArray[] waypointsArray;
+    private Characters gameWinner;
     private static readonly string[] miniGamesObjNames = {
         "JoKenPoScript"
     };
     
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         playersIDs = new List<int>();
         List<int> playersReady = GameObject.Find("MenuLogic").GetComponent<MenuLogic>().GetPlayersReady();
         transitionScript = GameObject.Find("LevelTransition").GetComponent<LevelTransitionScript>();
@@ -132,6 +136,12 @@ public class GameLogic : MonoBehaviour
     public void Duel(int challenger, int defender, Transform background) 
     {
         cinemachineCamera.Follow = null;
+        StartCoroutine(StartMiniGame(challenger, defender, background));
+    }
+
+    IEnumerator StartMiniGame(int challenger, int defender, Transform background)
+    {
+        yield return new WaitForSeconds(1.0f);
         curMiniGame = Random.Range(0, miniGamesAmount);
         curChallenger = playersIDs[challenger];
         curDefender = playersIDs[defender];
@@ -211,7 +221,25 @@ public class GameLogic : MonoBehaviour
                     break;
                 }    
             }
-            EndMove();
+            if (this.isGameOver)
+            {
+                Characters winner = Characters.Hawy;
+                for (int i = 0; i < playersIDs.Count; i++)
+                {
+                    PlayerScript player = playersScripts[i].GetComponent<PlayerScript>();
+                    if (player.getLifes() > 0)
+                    {
+                        winner = player.GetCharacther();
+                        break;
+                    }
+                }
+                gameWinner = winner;
+                transitionScript.LoadLevel("GameEnding", true, 1f);
+            }
+            else 
+            {
+                EndMove();
+            }
         }
         mainGameUI.SetActive(true);
         music.mute = false;
@@ -242,5 +270,10 @@ public class GameLogic : MonoBehaviour
     public void CameraFocusOnPlayerToMove()
     {
         cinemachineCamera.Follow = playersScripts[playerToMove].transform;
+    }
+
+    public Characters GetGameWinner()
+    {
+        return gameWinner;
     }
 }

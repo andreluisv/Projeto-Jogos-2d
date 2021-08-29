@@ -34,6 +34,8 @@ public class PlayerScript : MonoBehaviour
     private bool isAttacking = false;
     private bool changingFlag = false;
     private float targetTime = 0.0f;
+    private Characters playerCharacter;
+
     private void Start()
     {
         playerAudio = GetComponent<AudioSource>();
@@ -52,6 +54,12 @@ public class PlayerScript : MonoBehaviour
     public void SetPlayerIndex(int playerIndex)
     {
         this.playerIndex = playerIndex;
+        playerCharacter = (Characters) playerIndex;
+    }
+
+    public Characters GetCharacther()
+    {
+        return playerCharacter;
     }
 
     // Update is called once per frame
@@ -87,7 +95,7 @@ public class PlayerScript : MonoBehaviour
         }
         if (isDamaged)
         {
-            Debug.Log("time: " + Time.time + " targert time: " + targetTime);
+            // Debug.Log("time: " + Time.time + " targert time: " + targetTime);
             if(Time.time > targetTime)
             {
                 isDamaged = false;
@@ -139,7 +147,7 @@ public class PlayerScript : MonoBehaviour
         this.loseLife();
         isDamaged = true;
         animator.SetBool("isHurt", true);
-        targetTime = Time.time + 1.4f;
+        targetTime = Time.time + 2.0f;
     }
 
     private void loseLife() 
@@ -147,8 +155,10 @@ public class PlayerScript : MonoBehaviour
         if (lifes > 0) {
             lifes--;
             this.removeHeart();
-        } else {
-            this.setGameOver();
+        }
+        if (lifes == 0)
+        {
+            setGameOver();
         }
     }
 
@@ -202,8 +212,7 @@ public class PlayerScript : MonoBehaviour
             if (boardPlaces[waypointIndex].tag == "Neutral") 
             {
                 ChangeBoardPositionLeader();
-                gameLogic.EndMove();
-                gameLogic.CameraFocusOnPlayerToMove();
+                StartCoroutine(TakeNeutral());
             } 
             else 
             {
@@ -213,9 +222,15 @@ public class PlayerScript : MonoBehaviour
         } 
         else 
         {
-            gameLogic.EndMove();
-            gameLogic.CameraFocusOnPlayerToMove();
+            StartCoroutine(TakeNeutral());
         }
+    }
+
+    IEnumerator TakeNeutral()
+    {
+        yield return new WaitForSeconds(1.25f);
+        gameLogic.EndMove();
+        gameLogic.CameraFocusOnPlayerToMove();
     }
 
     public void ChangeBoardPositionLeader()
@@ -252,7 +267,7 @@ public class PlayerScript : MonoBehaviour
     public void setAttack() 
     {
         animator.SetBool("isAttacking", true);
-        targetTime = Time.time + 0.9f;
+        targetTime = Time.time + 2.0f;
         isAttacking = true;
     }
 }

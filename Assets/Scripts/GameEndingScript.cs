@@ -30,7 +30,7 @@ public class GameEndingScript : MonoBehaviour
 
     IEnumerator EndingCouroutine()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(60f);
         Application.Quit();
     }
 }

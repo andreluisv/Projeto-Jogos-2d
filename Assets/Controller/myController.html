@@ -108,8 +108,9 @@
       }
 
       #rockButton {
-        background: url("https://jokenpo.wesleymends.com.br/img/stone.png") no-repeat;
-        background-size: contain; 
+        background: url("https://i.imgur.com/I4Qkxa6.png") no-repeat;
+        background-size: contain;
+        background-position: center;
         left: 7%;
          width: 25%;
          height: 35%;
@@ -117,8 +118,9 @@
       }
 
       #papperButton {
-        background: url("https://jokenpo.wesleymends.com.br/img/paper.png") no-repeat;
+        background: url("https://i.imgur.com/zAbeOiU.png") no-repeat;
         background-size: contain; 
+        background-position: center;
         left: 37.5%;
         width: 25%;
         height: 35%;
@@ -126,8 +128,9 @@
       }
 
       #scissorsButton {
-        background: url("https://jokenpo.wesleymends.com.br/img/scissors.png") no-repeat;
+        background: url("https://i.imgur.com/CLblvsU.png") no-repeat;
         background-size: contain; 
+        background-position: center;
         left: 68%;
         width: 25%;
         height: 35%;
@@ -441,7 +444,7 @@
     </div>
     <div class="view" id="diceDisplay">
         <div class=button-300-300 id="rollButton" ontouchstart="window.app.pressRollDiceButton('rollDice')">
-            <div class=button-text>Jogar Dado</div>
+            <div class=button-text>Roll dice</div>
         </div>
     </div>
     <div class="view" id="playerMoving">
@@ -462,13 +465,13 @@
         <div class="titleContainer"><h3 id ="jokenpoTitlePlayer">Placeholder</h3></div>
         <div class="playerOptions">
             <div class="button" id="rockButton" ontouchstart="window.app.pressJoKenPoOptions('Rock')">
-                <div class ="titleOption">Rock</div>
+                <div class ="titleOption">Dagger</div>
             </div>
             <div class="button" id="papperButton" ontouchstart="window.app.pressJoKenPoOptions('Papper')">
-                <div class ="titleOption">Paper</div>
+                <div class ="titleOption">Snake</div>
             </div>
             <div class="button" id="scissorsButton" ontouchstart="window.app.pressJoKenPoOptions('Scissors')">
-                <div class ="titleOption">Scissor</div>
+                <div class ="titleOption">Poison</div>
             </div>
         </div>
     </div>

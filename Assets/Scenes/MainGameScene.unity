@@ -3734,6 +3734,7 @@ MonoBehaviour:
   mainGameUI: {fileID: 407356429}
   win_challengerSFX: {fileID: 8300000, guid: ccd50272799cf8a419dd7fd423cfb757, type: 3}
   lose_challengerSFX: {fileID: 8300000, guid: cbe8c15a6cad5814b9be918762716a08, type: 3}
+  lose_challengerGirlSFX: {fileID: 8300000, guid: 357fc3ea65f54f2489d7da36f01bb247, type: 3}
   walkingSFX: {fileID: 8300000, guid: cf112d07c15643448b01664ef98956a2, type: 3}
   sfxSource: {fileID: 1021891348}
   miniGamesRules:
@@ -5455,7 +5456,7 @@ RectTransform:
   m_GameObject: {fileID: 1949453020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 1.66, z: 1}
+  m_LocalScale: {x: 0.90000004, y: 1.250239, z: 1}
   m_Children: []
   m_Father: {fileID: 1444499918}
   m_RootOrder: 0
@@ -6143,7 +6144,7 @@ RectTransform:
   m_GameObject: {fileID: 2145015108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0924, y: 1.0924, z: 1.0924}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 1.0924}
   m_Children:
   - {fileID: 1444499918}
   - {fileID: 71853579}
@@ -6152,7 +6153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -552, y: -206}
+  m_AnchoredPosition: {x: -637, y: -304}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &5869699881679820132

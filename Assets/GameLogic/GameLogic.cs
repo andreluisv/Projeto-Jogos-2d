@@ -29,6 +29,8 @@ public class GameLogic : MonoBehaviour
     [SerializeField]
     private AudioClip lose_challengerSFX = null;
     [SerializeField]
+    private AudioClip lose_challengerGirlSFX = null;
+    [SerializeField]
     private AudioClip walkingSFX = null;
     [SerializeField]
     private AudioSource sfxSource;
@@ -215,7 +217,7 @@ public class GameLogic : MonoBehaviour
                     cinemachineCamera.Follow = playersScripts[i].transform;
                     //playersScripts[i].GetComponent<PlayerScript>().setMoveBack();
                     playersScripts[i].GetComponent<PlayerScript>().setTakeDamage();
-                    sfxSource.PlayOneShot(lose_challengerSFX, 0.5f);
+                    sfxSource.PlayOneShot( (i==0) ? lose_challengerSFX : lose_challengerGirlSFX, 0.5f);
                     this.isGameOver = playersScripts[i].GetComponent<PlayerScript>().getGameOver();
                     Debug.Log("Terminou o jogo = " + this.isGameOver + " Vidas do Player = " + playersScripts[i].GetComponent<PlayerScript>().getLifes());
                     break;

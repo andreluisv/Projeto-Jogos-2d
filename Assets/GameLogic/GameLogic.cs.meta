@@ -3,7 +3,18 @@ guid: b85181809bdea044dafedb0e21ca2863
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dice: {instanceID: 0}
+  - diceObj: {instanceID: 0}
+  - cameraObj: {instanceID: 0}
+  - cinemachineCamera: {instanceID: 0}
+  - music: {instanceID: 0}
+  - mainGameUI: {instanceID: 0}
+  - win_challengerSFX: {instanceID: 0}
+  - lose_challengerSFX: {instanceID: 0}
+  - lose_challengerGirlSFX: {fileID: 8300000, guid: 157b5965a70b83a4f9a61ac12856c401, type: 3}
+  - walkingSFX: {instanceID: 0}
+  - sfxSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

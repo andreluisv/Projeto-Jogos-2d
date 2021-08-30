@@ -59,6 +59,8 @@ public class GameLogic : MonoBehaviour
     private GameObject[] boardPlaces;
     public WaypointsArray[] waypointsArray;
     private Characters gameWinner;
+    private Characters leftCharacter;
+    private Characters rightCharacter;
     private static readonly string[] miniGamesObjNames = {
         "JoKenPoScript"
     };
@@ -147,6 +149,8 @@ public class GameLogic : MonoBehaviour
         curMiniGame = Random.Range(0, miniGamesAmount);
         curChallenger = playersIDs[challenger];
         curDefender = playersIDs[defender];
+        leftCharacter = playersScripts[challenger].GetComponent<PlayerScript>().GetCharacther();
+        rightCharacter = playersScripts[defender].GetComponent<PlayerScript>().GetCharacther();
         SetDeviceView(curChallenger, "gameRules");
         SetDeviceView(curDefender, "gameRules");
         StartCoroutine(LoadMiniGame(8f, background));
@@ -167,6 +171,7 @@ public class GameLogic : MonoBehaviour
         cameraObj.transform.position = new Vector3(cameraTransform.position.x, cameraTransform.position.y, -10f);
         miniGamesRules[curMiniGame].SetActive(false);
         miniGamesScripts[curMiniGame] = GameObject.Find(miniGamesObjNames[curMiniGame]).GetComponent<IMiniGameScript>();
+        miniGamesScripts[curMiniGame].SetUIText(leftCharacter, rightCharacter);
         miniGamesScripts[curMiniGame].SetUIActive();
         miniGamesScripts[curMiniGame].SetPlayers(curChallenger, curDefender);
         SetDeviceView(curChallenger, "joKenPoOptions", true);

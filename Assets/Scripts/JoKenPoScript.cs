@@ -13,7 +13,7 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
     private int challenger, defender;
     private int leftID = 0, rightID = 0;
     [SerializeField]
-    private float moveSpeed = 5f;
+    private float moveSpeed = 8f;
     private int choiceCount = 0;
     private int winner = 0;
     private bool isMoving = false;
@@ -147,5 +147,10 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
         {
             winner = 1;
         }
+    }
+
+    public void SetUIText(Characters left, Characters right)
+    {
+        gameUI.SetUIText(left,right);
     }
 }

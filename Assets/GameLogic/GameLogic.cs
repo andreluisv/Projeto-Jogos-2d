@@ -193,7 +193,9 @@ public class GameLogic : MonoBehaviour
     {
         transitionScript.FadeIn();
         yield return new WaitForSeconds(1f);
+        
         transitionScript.FadeOut();
+        // transitionScript.
         cameraObj.transform.position = new Vector3(0,0,-10f);
         SceneManager.UnloadSceneAsync(sceneName);
         if (curWinnerPlayer == -1)
@@ -241,6 +243,8 @@ public class GameLogic : MonoBehaviour
                     }
                 }
                 gameWinner = winner;
+                SetDeviceView(playersIDs[0], "gameEnding");
+                SetDeviceView(playersIDs[1], "gameEnding");
                 transitionScript.LoadLevel("GameEnding", true, 1f);
             }
             else 

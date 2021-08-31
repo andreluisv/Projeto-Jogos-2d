@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
     private int boardSize = -1;
     [HideInInspector]
     public bool gameOver = false;
-    private int lifes = 3;
+    private int lifes = 1;
     public int waypointIndex = 0;
     private int laps = 0;
     private int toMove = 0;

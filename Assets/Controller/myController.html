@@ -289,6 +289,23 @@
             z-index:-1;
         }
 
+        #gameEnding {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: black;
+        }
+
+        .ending-container {
+            display: flex;
+            justify-content: space-between;
+            color:white;
+            font-size: 25px;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+        }
+
         .bg2 {
             animation-direction:alternate-reverse;
             animation-duration:4s;
@@ -485,6 +502,50 @@
     </div>
     <div class="view" id="doingCombat">
         <div style="color:white;font-size: 50px;"> Unveiling choices </div>
+    </div>
+    <div class="view" id="gameEnding">
+        <div style="color:white;font-size: 43px;"> Thanks For Playing Our Demo </div>
+        <div style="color:white;font-size: 20px;text-align:center; margin-top:25px"> Made with love by <b>Team Apreciadores de Casos de Familia & Associados</b></div>
+        <div class="ending-container">
+            <div class="ending-list">
+                <ul>
+                    <li>
+                        Andre Vasconcelos
+                    </li>
+                    <li>
+                        Antonio Netto
+                    </li>
+                    <li>
+                        Eduarda Sassa
+                    </li>
+                    <li>
+                        Heitor Santos
+                    </li>
+                    <li>
+                        Joao Valadares
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li>
+                        Leonidas Junior
+                    </li>
+                    <li>
+                        Pedro Coutinho
+                    </li>
+                    <li>
+                        Robson Oliveira
+                    </li>
+                    <li>
+                        Vinicius Dantas
+                    </li>
+                    <li>
+                        Victor Hugo
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
     <!-- Add your HTML elements here -->
     <!-- <div id="collor-button" ontouchstart="window.app.sendMessageToScreen('interact')"></div> -->

@@ -27,5 +27,21 @@ public class JoKenPoUIScript : MonoBehaviour
     {
         leftCard.text = left.ToString();
         rightCard.text = right.ToString();
+        if (left == Characters.Hawy)
+        {
+            leftCard.color = new Color32(182, 78, 43, 255); 
+        }
+        else 
+        {
+            leftCard.color = new Color32(67, 142, 136, 255); 
+        }
+        if (right == Characters.Fiona)
+        {
+            rightCard.color = new Color32(67, 142, 136, 255);
+        }
+        else 
+        {
+            rightCard.color = new Color32(182, 78, 43, 255); 
+        }
     }
 }

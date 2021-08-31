@@ -191,11 +191,14 @@ public class GameLogic : MonoBehaviour
     }
     IEnumerator UnloadMiniGameCoroutine(string sceneName)
     {
+        PlayerPrefs.SetInt("curWinner", curWinnerPlayer);
+        PlayerPrefs.SetInt("character", (int) leftCharacter);
+        transitionScript.LoadLevel("FairyTransition", true, 1f, LoadSceneMode.Additive);
+        yield return new WaitForSeconds(6.5f);
         transitionScript.FadeIn();
         yield return new WaitForSeconds(1f);
-        
+        SceneManager.UnloadSceneAsync("FairyTransition");
         transitionScript.FadeOut();
-        // transitionScript.
         cameraObj.transform.position = new Vector3(0,0,-10f);
         SceneManager.UnloadSceneAsync(sceneName);
         if (curWinnerPlayer == -1)

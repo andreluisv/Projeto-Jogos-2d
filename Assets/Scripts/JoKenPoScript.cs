@@ -58,7 +58,7 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
     IEnumerator ResetGame() 
     {
         // gameUI.SetGameStatus("Draw");
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.5f);
         choiceCount = 0;
         leftChoices[leftID].transform.position = leftReset.position;
         rightChoices[rightID].transform.position = rightReset.position;
@@ -79,14 +79,14 @@ public class JoKenPoScript : MonoBehaviour, IMiniGameScript
         }
         gameUI.EndGame();
         gameLogic.SetWhoWins(winner);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.5f);
         gameLogic.UnloadMiniGame("MiniGame0");
     }
 
     IEnumerator StartGame()
     {
         gameUI.FlipLoadAnimation();
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2.5f);
         isMoving = true;
     }
 
